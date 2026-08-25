@@ -20,3 +20,14 @@
 - [x] Preservar textos escuros apenas para contraste e legibilidade.
 - [x] Validar desktop e mobile com Montserrat e a nova paleta.
 - [x] Salvar checkpoint e entregar a versão atualizada.
+
+## Expansão multipágina da loja
+
+- [x] Criar rota e página de produto com preços, desconto, parcelamento e descrições.
+- [x] Criar produtos relacionados e construtor de combo com dois itens e 20% OFF.
+- [x] Criar área de avaliações reais verificadas sem comentários fabricados.
+- [x] Criar página de conta com login demonstrativo, pedidos, favoritos e dados pessoais.
+- [x] Criar página institucional com missão, visão, valores e posicionamento brasileiro.
+- [x] Integrar navegação, rodapé e crédito “Loja Inteligente Desenvolvida por Happ Apps”.
+- [x] Validar todas as páginas em desktop e mobile.
+- [x] Salvar checkpoint e entregar a expansão final.

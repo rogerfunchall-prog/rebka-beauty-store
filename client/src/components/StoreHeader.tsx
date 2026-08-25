@@ -25,10 +25,11 @@ type StoreHeaderProps = {
 };
 
 const navItems = [
-  ["Produtos", "#produtos"],
-  ["Categorias", "#categorias"],
-  ["Sua rotina", "#rotina"],
-  ["Sobre", "#sobre"],
+  ["Produtos", "/#produtos"],
+  ["Categorias", "/#categorias"],
+  ["Sua rotina", "/#rotina"],
+  ["Sobre", "/empresa"],
+  ["Minha conta", "/conta"],
 ];
 
 export function StoreHeader({ cartItems }: StoreHeaderProps) {
@@ -43,7 +44,7 @@ export function StoreHeader({ cartItems }: StoreHeaderProps) {
       </div>
       <header className="store-header">
         <div className="container header-inner">
-          <a href="#inicio" className="brand-lockup" aria-label="Rebka Beauty — início">
+          <a href="/" className="brand-lockup" aria-label="Rebka Beauty — início">
             <img src={assets.logo} alt="Rebka — Skin Care That Connects" className="brand-logo-official" />
           </a>
 
@@ -71,21 +72,16 @@ export function StoreHeader({ cartItems }: StoreHeaderProps) {
                 </div>
                 <div className="search-suggestions">
                   <span>Mais buscados</span>
-                  <a href="#produtos">BeClean</a>
-                  <a href="#produtos">BeCalm</a>
-                  <a href="#produtos">BeSoft</a>
+                  <a href="/produto/beclean">BeClean</a>
+                  <a href="/produto/becalm">BeCalm</a>
+                  <a href="/produto/besoft">BeSoft</a>
                 </div>
               </DialogContent>
             </Dialog>
 
-            <button
-              type="button"
-              className="icon-button desktop-only"
-              aria-label="Minha conta"
-              onClick={() => toast("Área do cliente", { description: "A autenticação será conectada em uma próxima etapa." })}
-            >
+            <a href="/conta" className="icon-button desktop-only" aria-label="Minha conta">
               <UserRound size={19} />
-            </button>
+            </a>
             <button
               type="button"
               className="icon-button desktop-only"

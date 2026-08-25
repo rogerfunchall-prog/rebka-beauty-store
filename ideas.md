@@ -39,3 +39,18 @@ Todo arquivo de página, componente ou CSS deverá trazer no topo um comentário
 - O símbolo de pétala/R deve reaparecer como selo editorial em títulos, cartões de rotina, manifesto e rodapé.
 - As áreas de catálogo devem quebrar o ritmo de prateleira convencional com cards destacados, composições horizontais e notas de ritual.
 - A linguagem de motivos próprios é “curvas de sérum + selos de pétala + cápsulas rosé finas”; arredondamentos genéricos devem ser evitados quando não reforçam um desses elementos.
+- Hierarquia editorial: cada página deve ter uma mensagem principal em escala display Montserrat 500–600; microcopy em maiúsculas funciona apenas como etiqueta de apoio.
+- Motivos Rebka: todo bloco editorial importante deve usar ao menos um sinal próprio — curva de sérum, selo da marca ou cápsula rosé fina.
+- Ritmo visual: grandes áreas claras ou rosé devem ser ancoradas por fotografia, produto, selo, texto editorial ou composição assimétrica para que o respiro pareça luxo, não vazio.
+
+## Expansão multipágina
+
+As novas páginas preservam o mesmo cabeçalho, a paleta oficial e o rodapé compartilhado. A experiência permanece estática, mas todas as ações demonstrativas devem responder com feedback claro, sem sugerir que autenticação, pagamentos ou avaliações foram efetivamente persistidos.
+
+| Página | Estrutura principal | Decisão de experiência |
+|---|---|---|
+| Produto | Galeria, nome, preços, 6x sem juros, descrições, benefícios, relacionados e combo | O combo combina dois produtos reais e calcula 20% de desconto localmente. |
+| Conta | Boas-vindas, acesso demonstrativo, pedidos, favoritos e dados pessoais | A interface mostra estados úteis sem alegar autenticação ou histórico real. |
+| Empresa | Origem brasileira, missão, visão, valores e compromisso com preço justo | A voz fala com adolescentes de forma confiante, respeitosa e sem infantilização. |
+
+**Avaliações:** comentários, notas e depoimentos não serão fabricados. A página exibirá uma área preparada para avaliações de compradores verificados, com estado inicial transparente e chamada para futura integração de dados reais.

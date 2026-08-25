@@ -4,6 +4,7 @@ import { Heart, Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { formatPrice, type Product } from "@/data/store";
+import { Link } from "wouter";
 
 type ProductCardProps = {
   product: Product;
@@ -32,11 +33,13 @@ export function ProductCard({ product, onAdd }: ProductCardProps) {
         >
           <Heart className={favorite ? "fill-current" : ""} size={18} />
         </button>
-        <img src={product.image} alt={`${product.name} — ${product.subtitle}`} loading="lazy" />
+        <Link href={`/produto/${product.id}`} className="product-image-link">
+          <img src={product.image} alt={`${product.name} — ${product.subtitle}`} loading="lazy" />
+        </Link>
       </div>
       <div className="product-info">
         <p className="product-kicker">{product.size}</p>
-        <h3>{product.name}</h3>
+        <h3><Link href={`/produto/${product.id}`}>{product.name}</Link></h3>
         <p className="product-subtitle">{product.subtitle}</p>
         <div className="price-row">
           <div>

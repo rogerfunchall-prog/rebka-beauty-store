@@ -1,6 +1,7 @@
 /* Editorial Rosé Sensorial: home comercial assimétrica, arejada e guiada por fotografia realista de skincare. */
 import { ProductCard } from "@/components/ProductCard";
 import { StoreHeader } from "@/components/StoreHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { assets, categories, products, type Product } from "@/data/store";
 import {
@@ -9,14 +10,13 @@ import {
   CreditCard,
   FlaskConical,
   Leaf,
-  MessageCircle,
   PackageCheck,
   Recycle,
   ShieldCheck,
   Sparkles,
   Truck,
 } from "lucide-react";
-import { type FormEvent, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { toast } from "sonner";
 
 const benefits = [
@@ -67,18 +67,6 @@ export default function Home() {
   const chooseCategory = (category: string) => {
     setActiveCategory(category);
     document.querySelector("#produtos")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const subscribe = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = String(data.get("email") || "");
-    if (!email.includes("@")) {
-      toast.error("Digite um e-mail válido.");
-      return;
-    }
-    toast.success("Seu e-mail foi cadastrado!", { description: "A integração de envio será conectada futuramente." });
-    event.currentTarget.reset();
   };
 
   return (
@@ -252,39 +240,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="site-footer">
-        <div className="container newsletter-row">
-          <div>
-            <span className="eyebrow">Entre para o círculo Rebka</span>
-            <h2>Novidades, cuidados e ofertas especiais.</h2>
-          </div>
-          <form onSubmit={subscribe} className="newsletter-form">
-            <input name="email" type="email" placeholder="Seu melhor e-mail" aria-label="Seu melhor e-mail" />
-            <Button type="submit">Quero receber</Button>
-          </form>
-        </div>
-        <div className="container footer-grid">
-          <div className="footer-brand">
-            <div className="brand-lockup"><img src={assets.logo} alt="Rebka — Skin Care That Connects" className="brand-logo-official footer-logo" /></div>
-            <p>Skincare que conecta com você.<br />Beleza real, resultados reais.</p>
-          </div>
-          <div><strong>Ajuda</strong><a href="#produtos">Dúvidas frequentes</a><a href="#inicio">Rastreamento</a><a href="#inicio">Trocas e devoluções</a></div>
-          <div><strong>Informações</strong><a href="#sobre">Sobre a Rebka</a><a href="#rotina">Ingredientes</a><a href="#sobre">Sustentabilidade</a></div>
-          <div><strong>Contato</strong><a href="mailto:oi@rebka.com.br">oi@rebka.com.br</a><span>Seg–Sex, 9h às 18h</span></div>
-        </div>
-        <div className="container footer-bottom">
-          <span>© 2026 Rebka Beauty. Projeto demonstrativo front-end.</span>
-          <span>Privacidade · Termos de uso</span>
-        </div>
-      </footer>
-      <button
-        type="button"
-        className="support-button"
-        aria-label="Falar com a Rebka"
-        onClick={() => toast("Atendimento Rebka", { description: "O chat será conectado quando o canal de atendimento estiver definido." })}
-      >
-        <MessageCircle size={22} />
-      </button>
+      <SiteFooter />
     </div>
   );
 }
