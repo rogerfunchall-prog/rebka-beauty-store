@@ -10,7 +10,7 @@ O layout fornecido pela usuária é a referência central do projeto. A estrutur
 
 **Core Principles:** hierarquia editorial clara; delicadeza sem aparência infantil; fotografia realista do produto; equilíbrio entre áreas claras, blocos rosé e detalhes vinho; interface orientada à compra com baixa fricção.
 
-**Color Philosophy:** o rosé funciona como cor emocional de cuidado e proximidade, enquanto o vinho profundo dá autoridade e contraste. Marfim e branco quente ampliam a sensação de pele limpa e fórmula suave. A cor principal exclusiva da marca será **Rosa Rebka #C65270**.
+**Color Philosophy:** a identidade oficial define um rosa suave e luminoso como cor emocional de cuidado e proximidade, apoiado por vinho profundo para contraste e cinza neutro para informações secundárias. Marfim e branco quente ampliam a sensação de pele limpa e fórmula suave. A cor principal exclusiva da marca é **Rosa Rebka #E5909B**.
 
 **Layout Paradigm:** navegação horizontal leve, hero assimétrico dividido entre copy e fotografia, faixas editoriais sobrepostas, carrosséis horizontais no mobile e grades arejadas no desktop. O conteúdo alterna superfícies brancas e névoa rosé para criar ritmo.
 
@@ -26,9 +26,9 @@ O layout fornecido pela usuária é a referência central do projeto. A estrutur
 
 **Brand Voice:** manchetes curtas, sensoriais e claras; CTAs diretos e gentis; microcopy que orienta sem prometer resultados médicos. Exemplos: “Sua pele, no ritmo certo.” e “Encontre o cuidado que combina com você.”
 
-**Wordmark & Logo:** símbolo gráfico formado por duas pétalas espelhadas que também sugerem um “R” abstrato, combinado a um wordmark fino e customizado. O símbolo deve funcionar isoladamente no favicon e em selos.
+**Wordmark & Logo:** o wordmark oficial “rebka” possui construção linear, delicada e customizada, acompanhado da assinatura “SKIN CARE THAT CONNECTS”. Ele deve aparecer integralmente no cabeçalho, rodapé e aplicações institucionais, sem reconstrução tipográfica.
 
-**Signature Brand Color:** Rosa Rebka `#C65270`.
+**Signature Brand Color:** Rosa Rebka `#E5909B`, com vinho `#911D2C`, rosa suave `#E7C0C5`, cinza `#9B9998` e tinta `#403437` como apoios.
 
 ## Aplicação por arquivo
 

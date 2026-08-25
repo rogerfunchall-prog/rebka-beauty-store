@@ -265,7 +265,7 @@ export default function Home() {
         </div>
         <div className="container footer-grid">
           <div className="footer-brand">
-            <div className="brand-lockup"><img src={assets.logo} alt="" /><span className="brand-wordmark">re8ka</span></div>
+            <div className="brand-lockup"><img src={assets.logo} alt="Rebka — Skin Care That Connects" className="brand-logo-official footer-logo" /></div>
             <p>Skincare que conecta com você.<br />Beleza real, resultados reais.</p>
           </div>
           <div><strong>Ajuda</strong><a href="#produtos">Dúvidas frequentes</a><a href="#inicio">Rastreamento</a><a href="#inicio">Trocas e devoluções</a></div>

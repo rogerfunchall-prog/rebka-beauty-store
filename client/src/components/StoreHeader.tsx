@@ -44,8 +44,7 @@ export function StoreHeader({ cartItems }: StoreHeaderProps) {
       <header className="store-header">
         <div className="container header-inner">
           <a href="#inicio" className="brand-lockup" aria-label="Rebka Beauty — início">
-            <img src={assets.logo} alt="" className="brand-symbol" />
-            <span className="brand-wordmark">re8ka</span>
+            <img src={assets.logo} alt="Rebka — Skin Care That Connects" className="brand-logo-official" />
           </a>
 
           <nav className="desktop-nav" aria-label="Navegação principal">
@@ -150,7 +149,9 @@ export function StoreHeader({ cartItems }: StoreHeaderProps) {
               </SheetTrigger>
               <SheetContent side="left" className="mobile-menu-sheet">
                 <SheetHeader>
-                  <SheetTitle className="brand-wordmark">re8ka</SheetTitle>
+                  <SheetTitle>
+                    <img src={assets.logo} alt="Rebka — Skin Care That Connects" className="brand-logo-mobile" />
+                  </SheetTitle>
                   <SheetDescription>Skincare que conecta com você.</SheetDescription>
                 </SheetHeader>
                 <nav className="mobile-nav" aria-label="Navegação móvel">
