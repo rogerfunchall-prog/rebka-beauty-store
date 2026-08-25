@@ -10,7 +10,7 @@ O layout fornecido pela usuária é a referência central do projeto. A estrutur
 
 **Core Principles:** hierarquia editorial clara; delicadeza sem aparência infantil; fotografia realista do produto; equilíbrio entre áreas claras, blocos rosé e detalhes vinho; interface orientada à compra com baixa fricção.
 
-**Color Philosophy:** a identidade oficial define um rosa suave e luminoso como cor emocional de cuidado e proximidade, apoiado por vinho profundo para contraste e cinza neutro para informações secundárias. Marfim e branco quente ampliam a sensação de pele limpa e fórmula suave. A cor principal exclusiva da marca é **Rosa Rebka #E5909B**.
+**Color Philosophy:** a paleta oficial do site combina o rosa principal `#F2A7B4` para ações e assinatura, o rosa médio `#F7C6CE` para blocos sensoriais, o rosa claro `#FDEBEB` para grandes fundos e o branco `#FFFFFF` para superfícies e respiro. Textos em tinta escura são mantidos exclusivamente para assegurar leitura e contraste.
 
 **Layout Paradigm:** navegação horizontal leve, hero assimétrico dividido entre copy e fotografia, faixas editoriais sobrepostas, carrosséis horizontais no mobile e grades arejadas no desktop. O conteúdo alterna superfícies brancas e névoa rosé para criar ritmo.
 
@@ -20,7 +20,7 @@ O layout fornecido pela usuária é a referência central do projeto. A estrutur
 
 **Animation:** entradas com opacidade e deslocamento vertical curto; cascata de 45 ms nos cartões; duração entre 160 e 260 ms; somente transform e opacity; respeito a `prefers-reduced-motion`.
 
-**Typography System:** `Cormorant Garamond` para títulos e destaques editoriais; `Manrope` para navegação, textos, preços e controles. Títulos em peso 500, corpo entre 400 e 600, letras maiúsculas apenas em microcopy e etiquetas.
+**Typography System:** `Montserrat` em toda a experiência para manter unidade com o branding oficial. Títulos usam peso 500 e espaçamento negativo controlado; corpo, navegação, preços e controles alternam pesos 400, 500, 600 e 700. Letras maiúsculas ficam restritas à microcopy e às etiquetas.
 
 **Brand Essence:** skincare essencial para pessoas que buscam uma rotina bonita, simples e consciente. Personalidade: **acolhedora, inteligente, delicada**.
 
@@ -28,7 +28,7 @@ O layout fornecido pela usuária é a referência central do projeto. A estrutur
 
 **Wordmark & Logo:** o wordmark oficial “rebka” possui construção linear, delicada e customizada, acompanhado da assinatura “SKIN CARE THAT CONNECTS”. Ele deve aparecer integralmente no cabeçalho, rodapé e aplicações institucionais, sem reconstrução tipográfica.
 
-**Signature Brand Color:** Rosa Rebka `#E5909B`, com vinho `#911D2C`, rosa suave `#E7C0C5`, cinza `#9B9998` e tinta `#403437` como apoios.
+**Signature Brand Color:** Rosa Rebka `#F2A7B4`, acompanhado por `#F7C6CE`, `#FDEBEB` e `#FFFFFF`.
 
 ## Aplicação por arquivo
 
