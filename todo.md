@@ -31,3 +31,10 @@
 - [x] Integrar navegação, rodapé e crédito “Loja Inteligente Desenvolvida por Happ Apps”.
 - [x] Validar todas as páginas em desktop e mobile.
 - [x] Salvar checkpoint e entregar a expansão final.
+
+## Restauração do layout mobile anterior
+
+- [x] Comparar as regras responsivas do checkpoint anterior com a versão atual.
+- [x] Restaurar no mobile a composição anterior sem remover páginas ou funcionalidades.
+- [x] Validar as páginas principais em mobile e confirmar que o desktop não foi alterado.
+- [x] Salvar checkpoint e entregar a versão híbrida.

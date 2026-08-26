@@ -364,6 +364,12 @@
     .footer-brand { grid-column: 1 / -1; }
     .footer-bottom { padding: 18px 0; align-items: flex-start; flex-direction: column; }
     .support-button { right: 14px; bottom: 14px; width: 48px; height: 48px; }
+    /* Restauração do layout mobile anterior: ritmo de catálogo e hierarquia sem os motivos editoriais adicionados depois. */
+    .hero-copy h1 { font-weight: 500; }
+    .section-heading h2::after, .editorial-intro h2::after, .manifesto-copy h2::after { display: none; }
+    .product-grid { gap: 20px; }
+    .product-card { border-radius: 18px 18px 18px 4px; }
+    .product-card::after { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
