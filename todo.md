@@ -61,3 +61,24 @@
 - [x] Implementar carrossel com dois banners, controles acessíveis e rotação automática.
 - [x] Validar tipografia e banners em desktop e mobile.
 - [x] Salvar checkpoint e entregar a atualização.
+
+## Base de atendimento da IA
+
+- [x] Consolidar informações confirmadas dos produtos e regras de resposta segura.
+- [x] Redigir perguntas e respostas por intenção de atendimento.
+- [x] Revisar recomendações, links e linguagem de atendimento.
+- [x] Entregar a base de conhecimento em formato reutilizável.
+
+## Integração da IA de atendimento
+
+- [x] Atualizar o projeto para suportar atendimento por IA de forma segura.
+- [x] Implementar a lógica de respostas usando a base aprovada e links de produtos.
+- [x] Criar a interface de chat e integrá-la ao botão de atendimento.
+- [x] Testar respostas, recomendações e cenários de erro.
+- [x] Validar o fallback do servidor diante de resposta inválida do modelo.
+- [x] Corrigir o fallback para preservar a recomendação coerente com o produto citado.
+- [x] Revalidar o fallback inválido para BeClean, BeCalm e BeSoft.
+- [x] Validar no navegador a mensagem visual para uma falha genérica do chat.
+- [x] Validar o limite de requisições e a mensagem de excesso no chat.
+- [x] Validar a abertura, o envio, o carregamento e o tratamento visual de erro do chat.
+- [x] Salvar checkpoint e entregar o atendimento integrado.

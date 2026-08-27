@@ -1,9 +1,9 @@
 /* Editorial Rosé Sensorial: rodapé compartilhado com navegação clara, confiança institucional e crédito do estúdio. */
 import { Button } from "@/components/ui/button";
 import { assets } from "@/data/store";
-import { MessageCircle } from "lucide-react";
 import { type FormEvent } from "react";
 import { toast } from "sonner";
+import { RebkaAssistant } from "@/components/RebkaAssistant";
 
 export function SiteFooter() {
   const subscribe = (event: FormEvent<HTMLFormElement>) => {
@@ -44,14 +44,7 @@ export function SiteFooter() {
           <span className="developer-credit">Loja Inteligente Desenvolvida por <a href="https://www.happapps.com.br" target="_blank" rel="noreferrer">Happ Apps</a></span>
         </div>
       </footer>
-      <button
-        type="button"
-        className="support-button"
-        aria-label="Falar com a Rebka"
-        onClick={() => toast("Atendimento Rebka", { description: "O chat será conectado quando o canal de atendimento estiver definido." })}
-      >
-        <MessageCircle size={22} />
-      </button>
+      <RebkaAssistant />
     </>
   );
 }
