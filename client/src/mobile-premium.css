@@ -210,6 +210,7 @@
   .manifesto-section { position: relative; background: var(--rebka-blush); }
   .manifesto-section::after { content: ""; position: absolute; width: 210px; height: 54px; right: -105px; bottom: 44px; border: 1px solid var(--rebka-rose); border-radius: 50%; transform: rotate(-13deg); opacity: .7; }
   .site-footer { background: #FFFFFF; }
+  .site-footer .container { padding-left: 30px; padding-right: 30px; }
   .newsletter-row { padding-top: 48px; }
   .newsletter-row::before { content: ""; display: block; width: 78px; height: 23px; margin-bottom: 4px; background: url('/manus-storage/rebka-logo-oficial_e24d4215.png') left center / contain no-repeat; opacity: .58; }
 
