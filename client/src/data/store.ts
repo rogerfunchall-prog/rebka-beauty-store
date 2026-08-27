@@ -17,6 +17,7 @@ export type Product = {
 export const assets = {
   logo: "/manus-storage/rebka-logo-oficial_e24d4215.png",
   hero: "/manus-storage/rebka-hero-ritual-premium_ba08a9a8.png",
+  heroBesoft: "/manus-storage/rebka-hero-besoft-ritual_8ed361ef.png",
   categoryClean: "/manus-storage/rebka-category-limpeza_88dd72d9.png",
   categoryHydration: "/manus-storage/rebka-category-hidratacao_e08a0daf.png",
   categorySerum: "/manus-storage/rebka-category-seruns_5f19b540.png",

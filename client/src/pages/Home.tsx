@@ -7,6 +7,8 @@ import { assets, categories, products, type Product } from "@/data/store";
 import {
   ArrowRight,
   Check,
+  ChevronLeft,
+  ChevronRight,
   CreditCard,
   FlaskConical,
   Leaf,
@@ -16,7 +18,7 @@ import {
   Sparkles,
   Truck,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
 const benefits = [
@@ -47,10 +49,47 @@ const routineOptions = [
   },
 ];
 
+const heroSlides = [
+  {
+    id: "ritual-completo",
+    image: assets.hero,
+    alt: "BeClean, BeCalm e BeSoft em composição editorial rosé",
+    kicker: "Cuidado que entende sua pele",
+    title: "Skincare que conecta com você.",
+    description: "Fórmulas essenciais para uma rotina simples, confortável e cheia de intenção.",
+    primaryLabel: "Conheça os produtos",
+    primaryHref: "#produtos",
+    secondaryLabel: "Descobrir minha rotina",
+    secondaryHref: "#rotina",
+  },
+  {
+    id: "ritual-hidratacao",
+    image: assets.heroBesoft,
+    alt: "Modelo adulta usando o hidratante BeSoft em campanha da Rebka",
+    kicker: "Hidratação que acompanha",
+    title: "Seu momento de cuidado começa aqui.",
+    description: "Textura leve, conforto diário e uma rotina que tem a sua cara.",
+    primaryLabel: "Conheça BeSoft",
+    primaryHref: "/produto/besoft",
+    secondaryLabel: "Montar minha rotina",
+    secondaryHref: "#rotina",
+  },
+];
+
 export default function Home() {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [activeCategory, setActiveCategory] = useState("todos");
   const [routine, setRoutine] = useState(routineOptions[0]);
+  const [activeHero, setActiveHero] = useState(0);
+  const [heroPaused, setHeroPaused] = useState(false);
+
+  useEffect(() => {
+    if (heroPaused) return;
+    const timer = window.setInterval(() => {
+      setActiveHero((current) => (current + 1) % heroSlides.length);
+    }, 6200);
+    return () => window.clearInterval(timer);
+  }, [heroPaused]);
 
   const visibleProducts = useMemo(
     () => activeCategory === "todos" ? products : products.filter((product) => product.category === activeCategory),
@@ -74,18 +113,40 @@ export default function Home() {
       <StoreHeader cartItems={cartItems} />
 
       <main>
-        <section id="inicio" className="hero-section" aria-labelledby="hero-title">
-          <img src={assets.hero} alt="Linha de skincare Rebka em composição rosé" className="hero-image" />
+        <section
+          id="inicio"
+          className="hero-section"
+          aria-labelledby="hero-title"
+          aria-roledescription="carrossel"
+          onMouseEnter={() => setHeroPaused(true)}
+          onMouseLeave={() => setHeroPaused(false)}
+          onFocus={() => setHeroPaused(true)}
+          onBlur={() => setHeroPaused(false)}
+        >
+          <div className="hero-slides" aria-live="polite">
+            {heroSlides.map((slide, index) => (
+              <div key={slide.id} className={index === activeHero ? "hero-slide active" : "hero-slide"} aria-hidden={index !== activeHero}>
+                <img src={slide.image} alt={index === activeHero ? slide.alt : ""} />
+              </div>
+            ))}
+          </div>
           <div className="container hero-content">
-            <div className="hero-copy reveal">
-              <span className="eyebrow">Cuidado que entende sua pele</span>
-              <h1 id="hero-title">Skincare que conecta com você.</h1>
-              <p>Fórmulas essenciais para uma rotina simples, confortável e cheia de intenção.</p>
+            <div className="hero-copy" key={heroSlides[activeHero].id}>
+              <span className="eyebrow">{heroSlides[activeHero].kicker}</span>
+              <h1 id="hero-title">{heroSlides[activeHero].title}</h1>
+              <p>{heroSlides[activeHero].description}</p>
               <div className="hero-actions">
                 <Button size="lg" asChild>
-                  <a href="#produtos">Conheça os produtos <ArrowRight size={17} /></a>
+                  <a href={heroSlides[activeHero].primaryHref}>{heroSlides[activeHero].primaryLabel} <ArrowRight size={17} /></a>
                 </Button>
-                <a className="text-link" href="#rotina">Descobrir minha rotina</a>
+                <a className="text-link" href={heroSlides[activeHero].secondaryHref}>{heroSlides[activeHero].secondaryLabel}</a>
+              </div>
+              <div className="hero-controls" aria-label="Controles dos banners">
+                <button type="button" className="hero-arrow" aria-label="Banner anterior" onClick={() => setActiveHero((activeHero - 1 + heroSlides.length) % heroSlides.length)}><ChevronLeft size={17} /></button>
+                <div className="hero-dots" role="tablist" aria-label="Escolher banner">
+                  {heroSlides.map((slide, index) => <button key={slide.id} type="button" className={index === activeHero ? "active" : ""} role="tab" aria-selected={index === activeHero} aria-label={`Mostrar banner ${index + 1}`} onClick={() => setActiveHero(index)} />)}
+                </div>
+                <button type="button" className="hero-arrow" aria-label="Próximo banner" onClick={() => setActiveHero((activeHero + 1) % heroSlides.length)}><ChevronRight size={17} /></button>
               </div>
             </div>
           </div>

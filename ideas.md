@@ -47,6 +47,10 @@ Todo arquivo de página, componente ou CSS deverá trazer no topo um comentário
 
 No mobile, a Rebka deve parecer uma experiência de descoberta: hero de campanha, trilhos horizontais com snap para categorias e produtos, cartões com camadas suaves e chamadas de compra fáceis de alcançar. A linguagem é confiante e contemporânea, criada para adolescentes informadas que esperam estética, clareza e autonomia — sem infantilização, excesso de ruído ou promessas irreais.
 
+## Desktop — tipografia e campanhas
+
+No desktop, Montserrat deve criar uma hierarquia mais decidida: manchetes em peso 600 e espaçamento negativo preciso, corpo em peso 500 e navegação em peso 700 com caixa-alta discreta. O hero alterna duas campanhas complementares — ritual completo e hidratação BeSoft — com rotação suave, área de texto segura à esquerda e controles pequenos, claros e acessíveis.
+
 - Campos, contadores, badges, links e estados demonstrativos devem usar a mesma cápsula rosé e a mesma geometria editorial dos demais componentes.
 - Áreas rosé extensas precisam ser ancoradas por fotografia, curva de sérum, wordmark, selo ou sobreposição assimétrica.
 - Rosa principal é reservado para ações e sinais de marca; branco e rosa muito claro sustentam o espaço de leitura para um resultado maduro e premium.

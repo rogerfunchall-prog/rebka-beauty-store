@@ -377,6 +377,40 @@
   }
 }
 
+/* Desktop premium: banners rotativos e uma hierarquia Montserrat mais decidida. */
+@layer components {
+  .hero-slides, .hero-slide { position: absolute; inset: 0; }
+  .hero-slide { opacity: 0; transition: opacity 700ms var(--ease-out); }
+  .hero-slide.active { opacity: 1; }
+  .hero-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .hero-slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,.26) 0%, rgba(255,255,255,.06) 44%, transparent 72%); pointer-events: none; }
+  .hero-copy { width: min(535px, 46%); animation: hero-copy-in 560ms var(--ease-out) both; }
+  .hero-controls { margin-top: 28px; display: flex; align-items: center; gap: 11px; }
+  .hero-arrow { width: 31px; height: 31px; display: grid; place-items: center; background: rgba(255,255,255,.78); border: 1px solid var(--rebka-soft); border-radius: 50%; color: var(--rebka-ink); }
+  .hero-arrow:hover { background: white; transform: translateY(-1px); }
+  .hero-dots { display: flex; align-items: center; gap: 7px; }
+  .hero-dots button { width: 24px; height: 4px; background: rgba(64,52,55,.22); border-radius: 999px; }
+  .hero-dots button.active { width: 42px; background: var(--rebka-rose); }
+  @keyframes hero-copy-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (min-width: 1024px) {
+    .desktop-nav { gap: 30px; }
+    .desktop-nav a { font-size: 11px; font-weight: 700; letter-spacing: .12em; }
+    .hero-copy h1 { font-size: clamp(52px, 5.4vw, 82px); line-height: .92; letter-spacing: -.07em; font-weight: 600; }
+    .hero-copy p { max-width: 455px; font-weight: 500; line-height: 1.8; }
+    .section-heading h2, .editorial-intro h2, .manifesto-copy h2, .newsletter-row h2, .routine-copy h2 { line-height: .98; letter-spacing: -.055em; font-weight: 600; }
+    .product-info h3 { font-weight: 600; }
+    .price-row strong { font-size: 17px; font-weight: 700; }
+  }
+  @media (max-width: 1023px) {
+    .hero-slide img { object-position: 58% center; }
+  }
+  @media (max-width: 680px) {
+    .hero-controls { margin-top: 18px; justify-content: center; }
+    .hero-slide img { height: 61%; object-position: 67% center; }
+  }
+}
+
 @layer components {
   .developer-credit a { color: var(--rebka-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
   .product-image-link { display: block; width: 100%; height: 100%; }

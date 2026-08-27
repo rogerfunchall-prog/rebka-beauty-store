@@ -53,3 +53,11 @@
 - [x] Gerar e preparar o banner profissional com produtos reais Rebka.
 - [x] Aplicar o banner nos recortes desktop e mobile.
 - [x] Validar o hero, salvar checkpoint e entregar a versão atualizada.
+
+## Tipografia desktop e banners rotativos
+
+- [x] Definir hierarquia refinada de Montserrat para desktop e a narrativa do segundo banner.
+- [x] Gerar o segundo banner profissional da campanha Rebka.
+- [x] Implementar carrossel com dois banners, controles acessíveis e rotação automática.
+- [x] Validar tipografia e banners em desktop e mobile.
+- [x] Salvar checkpoint e entregar a atualização.
