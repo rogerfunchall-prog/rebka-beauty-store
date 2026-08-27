@@ -43,6 +43,14 @@ Todo arquivo de página, componente ou CSS deverá trazer no topo um comentário
 - Motivos Rebka: todo bloco editorial importante deve usar ao menos um sinal próprio — curva de sérum, selo da marca ou cápsula rosé fina.
 - Ritmo visual: grandes áreas claras ou rosé devem ser ancoradas por fotografia, produto, selo, texto editorial ou composição assimétrica para que o respiro pareça luxo, não vazio.
 
+## Direção mobile premium
+
+No mobile, a Rebka deve parecer uma experiência de descoberta: hero de campanha, trilhos horizontais com snap para categorias e produtos, cartões com camadas suaves e chamadas de compra fáceis de alcançar. A linguagem é confiante e contemporânea, criada para adolescentes informadas que esperam estética, clareza e autonomia — sem infantilização, excesso de ruído ou promessas irreais.
+
+- Campos, contadores, badges, links e estados demonstrativos devem usar a mesma cápsula rosé e a mesma geometria editorial dos demais componentes.
+- Áreas rosé extensas precisam ser ancoradas por fotografia, curva de sérum, wordmark, selo ou sobreposição assimétrica.
+- Rosa principal é reservado para ações e sinais de marca; branco e rosa muito claro sustentam o espaço de leitura para um resultado maduro e premium.
+
 ## Expansão multipágina
 
 As novas páginas preservam o mesmo cabeçalho, a paleta oficial e o rodapé compartilhado. A experiência permanece estática, mas todas as ações demonstrativas devem responder com feedback claro, sem sugerir que autenticação, pagamentos ou avaliações foram efetivamente persistidos.

@@ -38,3 +38,11 @@
 - [x] Restaurar no mobile a composição anterior sem remover páginas ou funcionalidades.
 - [x] Validar as páginas principais em mobile e confirmar que o desktop não foi alterado.
 - [x] Salvar checkpoint e entregar a versão híbrida.
+
+## Redesign mobile premium
+
+- [x] Auditar os pontos de maior fricção visual em home, produto, conta e empresa.
+- [x] Criar um sistema mobile premium para navegação, hero, cards, botões e compras.
+- [x] Refinar hierarquia, imagens e microinterações nas páginas de produto, conta e empresa.
+- [x] Validar as quatro rotas em mobile e preservar o desktop atual.
+- [x] Salvar checkpoint e entregar a versão mobile premium.

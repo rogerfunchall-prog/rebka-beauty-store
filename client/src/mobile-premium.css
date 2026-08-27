@@ -1,0 +1,235 @@
+/* Editorial Rosé Sensorial — Mobile Premium: descoberta tátil, ritmo editorial e compras diretas para a geração skincare. */
+@media (max-width: 680px) {
+  :root { --mobile-gutter: 20px; }
+  .container { padding-left: var(--mobile-gutter); padding-right: var(--mobile-gutter); }
+  .promo-bar { min-height: 38px; padding: 8px var(--mobile-gutter); gap: 6px; font-size: 8px; letter-spacing: .08em; }
+  .store-header { background: rgba(255,255,255,.9); border-bottom-color: rgba(242,167,180,.55); box-shadow: 0 8px 24px rgba(94,58,66,.06); backdrop-filter: blur(18px); }
+  .header-inner { min-height: 68px; }
+  .brand-logo-official { width: 156px; }
+  .header-actions { gap: 3px; }
+  .icon-button { width: 39px; height: 39px; background: rgba(253,235,235,.72); border-radius: 13px; }
+  .icon-button:hover { background: var(--rebka-soft); }
+  .cart-button span { right: -1px; top: -2px; box-shadow: 0 3px 8px rgba(76,49,54,.13); }
+  .mobile-menu-button { background: var(--rebka-rose); color: var(--rebka-ink); }
+  .mobile-nav { gap: 3px; margin-top: 22px; }
+  .mobile-nav a { padding: 17px 4px; border-bottom-color: var(--rebka-soft); font-size: 19px; font-weight: 600; letter-spacing: -.035em; }
+  .cart-sheet, .mobile-menu-sheet { background: linear-gradient(160deg, #FFFFFF 0%, var(--rebka-blush) 100%); }
+  .search-dialog { width: calc(100vw - 24px); border-radius: 22px 8px 22px 8px; }
+
+  .hero-section { min-height: 744px; background: var(--rebka-blush); }
+  .hero-content { min-height: 744px; padding-bottom: 18px; align-items: end; }
+  .hero-image { height: 61%; object-position: 64% center; filter: saturate(1.03) contrast(1.01); }
+  .hero-copy { position: relative; width: 100%; padding: 27px 23px 24px; background: rgba(255,255,255,.96); border: 1px solid rgba(242,167,180,.54); border-radius: 8px 34px 8px 8px; box-shadow: 0 22px 42px rgba(102,67,74,.13); }
+  .hero-copy::before { content: ""; position: absolute; top: 0; left: 23px; width: 74px; height: 7px; border-top: 2px solid var(--rebka-rose); border-radius: 50%; transform: rotate(-5deg); }
+  .hero-copy h1 { margin-top: 13px; font-size: 43px; line-height: .96; font-weight: 600; letter-spacing: -.065em; }
+  .hero-copy p { margin-top: 14px; font-size: 13px; line-height: 1.68; }
+  .hero-actions { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 22px; }
+  .hero-actions .button, .hero-actions > a:first-child { width: 100%; min-height: 49px; }
+  .hero-actions .text-link { min-height: 40px; justify-content: center; font-size: 10px; }
+
+  .benefit-wrap { width: 100%; margin-top: -1px; padding: 0; overflow: hidden; }
+  .benefit-strip { padding: 15px var(--mobile-gutter) 18px; display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; background: var(--rebka-blush); box-shadow: none; border-radius: 0; scrollbar-width: none; }
+  .benefit-strip::-webkit-scrollbar, .category-grid::-webkit-scrollbar, .product-grid::-webkit-scrollbar, .editorial-grid::-webkit-scrollbar { display: none; }
+  .benefit-item { min-width: 255px; min-height: 76px; flex: 0 0 76%; padding: 14px 15px; background: white; border: 1px solid var(--rebka-soft); border-radius: 18px 5px 18px 5px; box-shadow: 0 10px 22px rgba(102,67,74,.06); scroll-snap-align: start; }
+  .benefit-item, .benefit-item:nth-child(2), .benefit-item:nth-child(-n+2) { border-right: 1px solid var(--rebka-soft); border-bottom: 1px solid var(--rebka-soft); }
+  .benefit-item strong { font-size: 9px; }
+  .benefit-item span { font-size: 10px; }
+
+  .section-block, .products-section, .editorial-section, .manifesto-section { padding-top: 72px; padding-bottom: 72px; }
+  .section-heading { display: block; margin-bottom: 24px; }
+  .section-heading > div:first-child::before, .editorial-intro::before, .manifesto-copy::before, .newsletter-row > div:first-child::before { display: none; }
+  .eyebrow { font-size: 9px; letter-spacing: .16em; }
+  .section-heading h2, .editorial-intro h2, .manifesto-copy h2, .newsletter-row h2, .routine-copy h2 { max-width: 340px; margin-top: 9px; font-size: 33px; line-height: 1.02; font-weight: 600; }
+  .section-heading h2::after, .editorial-intro h2::after, .manifesto-copy h2::after { width: 64px; margin-top: 9px; }
+  .section-heading > .text-link { display: inline-flex; margin-top: 14px; font-size: 10px; }
+
+  .category-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 84%; grid-template-columns: none; gap: 12px; padding: 0 var(--mobile-gutter) 8px; margin: 0 calc(var(--mobile-gutter) * -1); overflow-x: auto; scroll-snap-type: x mandatory; }
+  .category-card { min-height: 130px; grid-template-columns: 122px 1fr auto; border-radius: 22px 7px 22px 7px; scroll-snap-align: start; }
+  .category-image { grid-column: auto; grid-row: 1; height: 130px; aspect-ratio: auto; }
+  .category-card > div:not(.category-image) { padding: 18px 0 18px 16px; }
+  .category-card strong { font-size: 18px; font-weight: 600; }
+  .category-card > svg { margin-right: 13px; }
+
+  .products-section { overflow: hidden; padding-left: 0; padding-right: 0; }
+  .products-section .container { padding-left: var(--mobile-gutter); padding-right: var(--mobile-gutter); }
+  .products-section::before { width: 340px; height: 145px; right: -170px; top: 22px; }
+  .products-heading { display: block; }
+  .filter-tabs { width: calc(100% + 0px); gap: 6px; padding: 5px; overflow-x: auto; flex-wrap: nowrap; border-radius: 18px; scrollbar-width: none; }
+  .filter-tabs button { flex: 0 0 auto; padding: 9px 12px; font-size: 10px; }
+  .catalog-ritual-note { margin: 17px 0 20px; padding: 11px 12px; align-items: flex-start; border-left-width: 3px; }
+  .catalog-ritual-note img { width: 71px; height: 23px; margin-top: 1px; }
+  .catalog-ritual-note span { font-size: 10px; line-height: 1.45; }
+  .serum-line { display: none; }
+  .product-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 81%; grid-template-columns: none; gap: 13px; padding: 0 var(--mobile-gutter) 12px; margin: 0 calc(var(--mobile-gutter) * -1); overflow-x: auto; scroll-snap-type: x mandatory; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:first-child, .product-grid:has(.product-card:nth-child(6)) .product-card:last-child { display: block; grid-column: auto; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:first-child .product-media, .product-grid:has(.product-card:nth-child(6)) .product-card:last-child .product-media { min-height: 0; aspect-ratio: 1 / 1; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:first-child .product-info, .product-grid:has(.product-card:nth-child(6)) .product-card:last-child .product-info { display: block; padding: 19px; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:first-child .product-info h3, .product-grid:has(.product-card:nth-child(6)) .product-card:last-child .product-info h3 { font-size: 25px; }
+  .product-card { border-radius: 24px 7px 24px 7px; scroll-snap-align: start; box-shadow: 0 16px 30px rgba(92,54,63,.09); }
+  .product-card::after { display: block; bottom: 11px; }
+  .product-info { padding: 19px; }
+  .product-info h3 { font-size: 26px; }
+  .quick-add { width: 44px; height: 44px; }
+
+  .routine-section { padding-top: 76px; padding-bottom: 82px; gap: 32px; }
+  .routine-copy > p { margin-top: 16px; font-size: 13px; }
+  .routine-options { margin-top: 22px; gap: 8px; }
+  .routine-option { padding: 14px; border-radius: 8px 18px 8px 18px; }
+  .routine-result { min-height: 530px; }
+  .routine-result > img { width: 92%; height: 450px; border-radius: 54px 8px 54px 8px; }
+  .routine-card { right: 0; left: auto; bottom: 0; width: 83%; padding: 22px; border-radius: 9px 26px 9px 26px; }
+  .routine-card h3 { font-size: 25px; }
+
+  .editorial-section { padding-left: 0; padding-right: 0; }
+  .editorial-section .container { padding-left: var(--mobile-gutter); padding-right: var(--mobile-gutter); }
+  .editorial-intro { margin-bottom: 24px; }
+  .editorial-grid { display: flex; gap: 13px; padding: 0 var(--mobile-gutter) 8px; margin: 0 calc(var(--mobile-gutter) * -1); overflow-x: auto; scroll-snap-type: x mandatory; }
+  .editorial-card, .editorial-card.tall { flex: 0 0 82%; height: 445px; scroll-snap-align: start; border-radius: 26px 7px 26px 7px; }
+  .editorial-card figcaption { left: 12px; right: 12px; bottom: 12px; padding: 14px; }
+
+  .manifesto-section { gap: 24px; }
+  .manifesto-mark { width: 142px; height: 82px; }
+  .manifesto-mark img { width: 112px; }
+  .manifesto-copy p { font-size: 13px; }
+  .manifesto-values { gap: 10px; }
+  .manifesto-values > div { min-height: 105px; padding: 17px; border-radius: 14px 4px 14px 4px; }
+
+  .newsletter-row { padding-top: 62px; padding-bottom: 32px; gap: 22px; }
+  .newsletter-form { gap: 7px; padding: 7px; border-radius: 14px 24px 14px 24px; }
+  .newsletter-form .button { min-height: 46px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 27px; padding: 36px 0; }
+  .footer-brand { grid-column: auto; }
+  .footer-logo { width: 186px; }
+  .footer-grid > div:not(.footer-brand) { gap: 9px; padding-top: 22px; border-top: 1px solid var(--rebka-soft); }
+  .footer-bottom { min-height: 0; padding: 20px 0 84px; gap: 9px; font-size: 9px; }
+  .support-button { right: 18px; bottom: 18px; width: 54px; height: 54px; border: 3px solid white; box-shadow: 0 12px 30px rgba(103,61,71,.22); }
+
+  /* Produto: leitura curta, decisão clara e compra ao alcance do polegar. */
+  .page-breadcrumb { min-height: 48px; padding-top: 7px; padding-bottom: 7px; font-size: 9px; }
+  .product-detail-layout { padding-bottom: 60px; gap: 25px; }
+  .product-gallery { display: flex; gap: 12px; padding: 0 var(--mobile-gutter) 8px; margin: 0 calc(var(--mobile-gutter) * -1); overflow-x: auto; scroll-snap-type: x mandatory; }
+  .product-gallery-main, .product-gallery-secondary { min-height: 470px; flex: 0 0 85%; border-radius: 30px 7px 30px 7px; scroll-snap-align: start; box-shadow: 0 16px 30px rgba(88,59,66,.1); }
+  .product-purchase-panel { padding: 0; }
+  .product-purchase-panel h1 { font-size: 48px; font-weight: 600; }
+  .product-short-description { margin-top: 14px; font-size: 13px; line-height: 1.7; }
+  .product-detail-price { margin-top: 22px; padding: 17px; background: var(--rebka-blush); border-radius: 14px 28px 14px 14px; }
+  .product-detail-price strong { font-size: 32px; }
+  .installment-line { margin-top: 11px; padding: 11px 13px; background: white; border: 1px solid var(--rebka-soft); border-radius: 12px; }
+  .purchase-actions { margin-top: 18px; grid-template-columns: 1fr auto; gap: 9px; }
+  .purchase-actions > .button { grid-column: 1 / -1; grid-row: 1; min-height: 52px; border-radius: 15px 24px 15px 24px; font-weight: 700; }
+  .quantity-control { grid-column: 1; grid-row: 2; min-height: 44px; border-radius: 12px; }
+  .product-favorite { grid-column: 2; grid-row: 2; width: 50px; min-height: 44px; border-radius: 12px; }
+  .purchase-assurances { gap: 16px; margin-top: 20px; padding-top: 17px; }
+  .product-story-section { padding: 72px 0; }
+  .product-story-grid { gap: 30px; }
+  .product-story-grid h2 { font-size: 34px; font-weight: 600; }
+  .product-story-grid p { margin-top: 15px; font-size: 13px; line-height: 1.75; }
+  .benefits-panel { padding: 22px; border-radius: 8px 28px 8px 28px; }
+  .benefits-panel > div { padding: 15px 0; }
+  .combo-section { padding-top: 72px; padding-bottom: 72px; }
+  .combo-section .section-heading { display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+  .combo-section .section-heading h2 { font-size: 31px; }
+  .combo-discount-badge { flex: 0 0 auto; padding: 9px 11px; font-size: 9px; }
+  .combo-builder { grid-template-columns: 1fr; border-radius: 8px 28px 8px 28px; overflow: hidden; }
+  .combo-products { min-height: 0; padding: 14px; background: var(--rebka-blush); }
+  .combo-product-card img { border-radius: 15px 4px 15px 4px; }
+  .combo-options { padding: 18px; border-left: 0; border-top: 1px solid var(--rebka-soft); }
+  .combo-options button { padding: 9px; border-radius: 12px; }
+  .combo-summary { padding: 24px; align-items: stretch; text-align: left; }
+  .combo-summary svg { margin-bottom: 14px; }
+  .combo-summary button { min-height: 48px; margin-top: 18px; }
+  .reviews-section { padding: 72px 0; }
+  .reviews-empty-state { gap: 26px; }
+  .reviews-empty-state h2 { font-size: 34px; font-weight: 600; }
+  .verified-review-empty { padding: 25px; border-radius: 8px 28px 8px 28px; }
+  .related-section { padding-top: 72px; padding-bottom: 72px; }
+  .related-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 81%; grid-template-columns: none; gap: 13px; padding: 0 var(--mobile-gutter) 12px; margin: 0 calc(var(--mobile-gutter) * -1); overflow-x: auto; scroll-snap-type: x mandatory; }
+  .related-grid .product-card { scroll-snap-align: start; }
+
+  /* Conta: aparência de app de beleza, com acesso claro e coleções pessoais em cards. */
+  .account-hero { padding: 56px 0 66px; }
+  .account-hero-grid { gap: 34px; }
+  .account-intro h1 { font-size: 45px; line-height: .95; font-weight: 600; }
+  .account-intro > p { margin-top: 17px; font-size: 13px; line-height: 1.72; }
+  .account-trust-line { margin-top: 22px; padding: 14px; background: rgba(255,255,255,.72); border: 1px solid var(--rebka-soft); border-radius: 10px 20px 10px 20px; }
+  .account-access-card { padding: 22px; border-radius: 9px 32px 9px 32px; box-shadow: 0 20px 44px rgba(104,68,76,.12); }
+  .account-mode-tabs { padding: 5px; }
+  .account-mode-tabs button { min-height: 43px; }
+  .account-card-heading { margin-top: 22px; }
+  .account-card-heading h2 { font-size: 22px; }
+  .account-form { margin-top: 21px; gap: 13px; }
+  .account-form input:not([type="checkbox"]) { min-height: 50px; border-radius: 13px; }
+  .account-form .button { min-height: 51px; border-radius: 14px 23px 14px 23px; }
+  .account-features-section { padding-top: 72px; padding-bottom: 72px; overflow: hidden; }
+  .account-feature-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 80%; grid-template-columns: none; gap: 13px; padding: 0 var(--mobile-gutter) 9px; margin: 0 calc(var(--mobile-gutter) * -1); overflow-x: auto; scroll-snap-type: x mandatory; }
+  .account-feature-card { min-height: 230px; scroll-snap-align: start; border-radius: 24px 7px 24px 7px; }
+  .account-care-section { padding: 56px 0; }
+  .account-care-inner h2 { font-size: 31px; font-weight: 600; }
+
+  /* Empresa: manifesto escaneável com fotografia, propósito e valores em sequência fluida. */
+  .company-hero { padding: 55px 0 70px; }
+  .company-hero-grid { gap: 35px; }
+  .company-hero-copy h1 { font-size: 45px; line-height: .95; font-weight: 600; }
+  .company-hero-copy p { margin: 17px 0 23px; font-size: 13px; line-height: 1.72; }
+  .company-hero-copy .button { min-height: 50px; width: 100%; border-radius: 14px 23px 14px 23px; }
+  .company-hero-image, .company-hero-image > img { min-height: 460px; height: 460px; border-radius: 48px 7px 48px 7px; }
+  .company-origin-seal { width: 142px; height: 142px; right: 14px; bottom: 14px; padding: 19px; }
+  .company-manifesto { padding: 72px 0; }
+  .company-manifesto-grid { gap: 28px; }
+  .company-manifesto h2 { font-size: 35px; font-weight: 600; }
+  .company-manifesto-copy p { font-size: 13px; line-height: 1.75; }
+  .purpose-section { padding-top: 72px; padding-bottom: 72px; overflow: hidden; }
+  .purpose-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 84%; grid-template-columns: none; gap: 13px; padding: 0 var(--mobile-gutter) 9px; margin: 0 calc(var(--mobile-gutter) * -1); overflow-x: auto; scroll-snap-type: x mandatory; }
+  .purpose-card, .purpose-card.values { min-height: 300px; grid-column: auto; scroll-snap-align: start; border-radius: 30px 7px 30px 7px; }
+  .purpose-card > span { margin-top: 45px; }
+  .company-audience-section { padding: 72px 0; }
+  .company-audience-grid { gap: 32px; }
+  .company-audience-image, .company-audience-image img { min-height: 430px; height: 430px; border-radius: 7px 52px 7px 52px; }
+  .company-audience-copy h2 { font-size: 35px; font-weight: 600; }
+  .company-audience-copy > p { margin-top: 16px; font-size: 13px; }
+  .audience-statements { gap: 7px; margin-top: 22px; }
+  .audience-statements span { padding: 9px 10px; font-size: 8px; }
+  .company-values-section { padding-top: 72px; padding-bottom: 72px; overflow: hidden; }
+  .company-values-grid { display: grid; grid-auto-flow: column; grid-auto-columns: 78%; grid-template-columns: none; gap: 13px; padding: 0 var(--mobile-gutter) 9px; margin: 0 calc(var(--mobile-gutter) * -1); overflow-x: auto; scroll-snap-type: x mandatory; }
+  .company-values-grid article { min-height: 240px; scroll-snap-align: start; }
+  .company-final-cta { padding: 54px 0; }
+  .company-final-inner { gap: 20px; }
+  .company-final-inner > img { width: 170px; }
+  .company-final-inner h2 { font-size: 31px; font-weight: 600; }
+  .company-final-inner .button { min-height: 49px; border-radius: 14px 23px 14px 23px; }
+}
+
+/* Refinamento de assinatura Rebka: menos candy, mais campanha editorial e controles coerentes. */
+@media (max-width: 680px) {
+  .section-heading::after { content: ""; display: block; width: 42px; height: 6px; margin-top: 17px; border: 1px solid var(--rebka-rose); border-radius: 50%; transform: rotate(-6deg); }
+  .products-section { background: #FFFFFF; }
+  .catalog-ritual-note { background: var(--rebka-blush); border-radius: 6px 18px 6px 18px; }
+  .routine-section { background: linear-gradient(180deg, #FFFFFF 0%, var(--rebka-blush) 100%); }
+  .editorial-section { background: #FFFFFF; }
+  .editorial-section::before { content: ""; position: absolute; z-index: 0; width: 180px; height: 54px; right: -48px; top: 66px; background: url('/manus-storage/rebka-logo-oficial_e24d4215.png') center / contain no-repeat; opacity: .16; transform: rotate(-8deg); }
+  .manifesto-section { position: relative; background: var(--rebka-blush); }
+  .manifesto-section::after { content: ""; position: absolute; width: 210px; height: 54px; right: -105px; bottom: 44px; border: 1px solid var(--rebka-rose); border-radius: 50%; transform: rotate(-13deg); opacity: .7; }
+  .site-footer { background: #FFFFFF; }
+  .newsletter-row { padding-top: 48px; }
+  .newsletter-row::before { content: ""; display: block; width: 78px; height: 23px; margin-bottom: 4px; background: url('/manus-storage/rebka-logo-oficial_e24d4215.png') left center / contain no-repeat; opacity: .58; }
+
+  .product-detail-price { position: relative; overflow: hidden; }
+  .product-detail-price::after { content: ""; position: absolute; width: 118px; height: 31px; right: -46px; bottom: -14px; border: 1px solid var(--rebka-rose); border-radius: 50%; transform: rotate(-9deg); opacity: .52; }
+  .quantity-control, .product-favorite { border-color: var(--rebka-soft); background: var(--rebka-blush); }
+  .reviews-section { position: relative; background: #FFFFFF; overflow: hidden; }
+  .reviews-section::before { content: ""; position: absolute; width: 250px; height: 64px; left: -125px; top: 36px; border: 1px solid var(--rebka-rose); border-radius: 50%; transform: rotate(10deg); }
+
+  .account-hero { background: linear-gradient(160deg, #FFFFFF 0%, var(--rebka-blush) 76%); }
+  .account-access-card { position: relative; overflow: hidden; }
+  .account-access-card::before { content: ""; position: absolute; right: -30px; top: 14px; width: 102px; height: 30px; border: 1px solid var(--rebka-rose); border-radius: 50%; transform: rotate(-17deg); opacity: .52; }
+  .forgot-link { margin-top: 15px; padding: 9px 12px; color: #756568; background: var(--rebka-blush); border: 1px solid var(--rebka-soft); border-radius: 999px; font-size: 10px; text-decoration: none; }
+  .account-care-section { position: relative; overflow: hidden; }
+  .account-care-section::after { content: ""; position: absolute; width: 180px; height: 47px; right: -55px; bottom: 22px; border: 1px solid var(--rebka-rose); border-radius: 50%; transform: rotate(-9deg); }
+
+  .company-hero { background: linear-gradient(160deg, #FFFFFF 0%, var(--rebka-blush) 76%); }
+  .company-manifesto { position: relative; overflow: hidden; }
+  .company-manifesto::after { content: ""; position: absolute; width: 190px; height: 52px; right: -72px; top: 44px; border: 1px solid var(--rebka-rose); border-radius: 50%; transform: rotate(-12deg); }
+  .company-audience-section { background: #FFFFFF; }
+  .company-final-cta { position: relative; background: var(--rebka-blush); overflow: hidden; }
+  .company-final-cta::after { content: ""; position: absolute; width: 160px; height: 43px; right: -64px; top: 27px; background: url('/manus-storage/rebka-logo-oficial_e24d4215.png') center / contain no-repeat; opacity: .25; }
+}
