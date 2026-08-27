@@ -51,6 +51,10 @@ No mobile, a Rebka deve parecer uma experiência de descoberta: hero de campanha
 
 No desktop, Montserrat deve criar uma hierarquia mais decidida: manchetes em peso 600 e espaçamento negativo preciso, corpo em peso 500 e navegação em peso 700 com caixa-alta discreta. O hero alterna duas campanhas complementares — ritual completo e hidratação BeSoft — com rotação suave, área de texto segura à esquerda e controles pequenos, claros e acessíveis.
 
+## Ajuste fino desktop
+
+A versão para computador usa uma grade mais ampla e regular, com respiro lateral consistente e seções ancoradas por conteúdo. Na página de produto, a galeria funciona como vitrine visual, enquanto preço, parcelamento e ação de compra ficam reunidos em um painel claro e estável. A escala da Montserrat prioriza leitura: microetiquetas discretas, títulos decididos, preços com maior ênfase e corpo confortável.
+
 - Campos, contadores, badges, links e estados demonstrativos devem usar a mesma cápsula rosé e a mesma geometria editorial dos demais componentes.
 - Áreas rosé extensas precisam ser ancoradas por fotografia, curva de sérum, wordmark, selo ou sobreposição assimétrica.
 - Rosa principal é reservado para ações e sinais de marca; branco e rosa muito claro sustentam o espaço de leitura para um resultado maduro e premium.

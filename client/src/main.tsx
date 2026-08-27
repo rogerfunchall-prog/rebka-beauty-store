@@ -9,6 +9,7 @@ import { startLogin } from "./const";
 import "./index.css";
 import "./mobile-premium.css";
 import "./rebka-assistant.css";
+import "./desktop-refinement.css";
 
 const queryClient = new QueryClient();
 

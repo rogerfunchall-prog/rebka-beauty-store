@@ -1,0 +1,122 @@
+/* Desktop Refinement — Rebka: grade editorial mais precisa, Montserrat com hierarquia e comércio com leitura imediata. */
+@media (min-width: 1024px) {
+  .container { max-width: 1360px; padding-left: 32px; padding-right: 32px; }
+  body { font-size: 15px; }
+
+  .promo-bar { min-height: 34px; font-size: 9px; letter-spacing: .13em; }
+  .header-inner { min-height: 82px; }
+  .brand-logo-official { width: 204px; }
+  .desktop-nav { gap: 31px; }
+  .desktop-nav a { font-size: 11px; letter-spacing: .125em; }
+  .header-actions { gap: 7px; }
+  .icon-button { width: 42px; height: 42px; }
+
+  .hero-section, .hero-content { min-height: 670px; }
+  .hero-copy { width: min(555px, 47%); padding: 58px 0; }
+  .hero-copy h1 { max-width: 565px; font-size: clamp(55px, 5vw, 78px); line-height: .93; letter-spacing: -.07em; }
+  .hero-copy p { max-width: 455px; font-size: 16px; line-height: 1.82; }
+  .hero-actions { margin-top: 32px; }
+  .hero-controls { margin-top: 32px; }
+  .benefit-strip { min-height: 102px; }
+  .benefit-item { padding: 20px 28px; gap: 14px; }
+  .benefit-item strong { font-size: 11px; letter-spacing: .08em; }
+  .benefit-item span { font-size: 12px; }
+
+  .section-block { padding-top: 104px; padding-bottom: 104px; }
+  .section-heading { margin-bottom: 38px; }
+  .section-heading h2, .editorial-intro h2, .manifesto-copy h2, .newsletter-row h2, .routine-copy h2 { font-size: clamp(40px, 3.4vw, 56px); line-height: .98; }
+  .category-grid { gap: 20px; }
+  .category-card > div:not(.category-image) { padding: 20px 12px 23px 22px; }
+  .category-card strong { font-size: 20px; font-weight: 600; }
+  .category-card span { font-size: 12px; }
+
+  .products-section { padding: 108px 0 126px; }
+  .products-heading { align-items: end; }
+  .catalog-ritual-note { margin-bottom: 28px; padding: 14px 18px; font-size: 12px; }
+  .filter-tabs button { padding: 10px 15px; font-size: 11px; }
+  .product-grid { gap: 20px; }
+  .product-info { padding: 23px; }
+  .product-info h3 { margin-top: 8px; font-size: 28px; line-height: 1.03; }
+  .product-subtitle { min-height: 36px; font-size: 12px; line-height: 1.55; }
+  .price-row { margin-top: 18px; }
+  .price-row strong { font-size: 18px; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:first-child .product-media { min-height: 400px; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:first-child .product-info { padding: 42px; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:first-child .product-info h3 { font-size: 42px; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:last-child .product-media { aspect-ratio: 16 / 6.5; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:last-child .product-info { padding: 42px 48px; }
+  .product-grid:has(.product-card:nth-child(6)) .product-card:last-child .product-info h3 { font-size: 42px; }
+
+  .routine-section { padding-top: 110px; padding-bottom: 112px; grid-template-columns: .9fr 1.1fr; gap: 82px; }
+  .routine-copy > p { max-width: 520px; font-size: 15px; }
+  .routine-result { min-height: 590px; }
+  .routine-result > img { height: 540px; }
+  .routine-card { width: 280px; padding: 28px; }
+  .editorial-section { padding: 104px 0; }
+  .editorial-grid { grid-template-rows: repeat(2, 290px); gap: 20px; }
+  .editorial-card figcaption { left: 20px; right: 20px; bottom: 20px; }
+  .manifesto-section { padding-top: 124px; padding-bottom: 124px; grid-template-columns: 180px .9fr 1.18fr; gap: 52px; }
+  .manifesto-copy p { font-size: 15px; line-height: 1.8; }
+  .manifesto-values > div { min-height: 138px; padding: 24px; }
+  .manifesto-values strong { font-size: 13px; }
+  .newsletter-row { padding-top: 86px; padding-bottom: 66px; gap: 88px; }
+  .footer-grid { padding: 52px 0; gap: 50px; }
+
+  /* Página de produto: sequência de leitura vertical e painel de compra estabilizado. */
+  .page-breadcrumb { min-height: 70px; font-size: 12px; }
+  .product-detail-layout { grid-template-columns: 1.08fr .92fr; gap: 76px; padding-bottom: 110px; }
+  .product-gallery { grid-template-columns: 1fr .72fr; gap: 18px; }
+  .product-gallery-main, .product-gallery-secondary { height: 590px; min-height: 0; }
+  .product-gallery-main { border-radius: 64px 10px 64px 10px; }
+  .product-gallery-secondary { border-radius: 10px 64px 10px 64px; }
+  .product-gallery img { height: 100%; object-position: center top; }
+  .product-purchase-panel { top: 132px; margin-top: 14px; padding: 38px 38px 34px; background: rgba(255,255,255,.94); border: 1px solid var(--rebka-soft); border-radius: 12px 40px 12px 40px; box-shadow: 0 22px 55px rgba(102,67,74,.08); }
+  .product-detail-kicker { font-size: 10px; letter-spacing: .16em; }
+  .product-purchase-panel h1 { margin-top: 14px; font-size: clamp(50px, 4.3vw, 68px); line-height: .93; }
+  .product-short-description { margin-top: 18px; font-size: 15px; line-height: 1.78; }
+  .product-detail-price { margin-top: 30px; gap: 10px 15px; }
+  .product-detail-price strong { font-size: 33px; letter-spacing: -.04em; }
+  .installment-line { margin-top: 15px; padding: 12px 0; border-top: 1px solid var(--rebka-blush); border-bottom: 1px solid var(--rebka-blush); font-size: 13px; }
+  .purchase-actions { margin-top: 24px; grid-template-columns: 116px 1fr 50px; }
+  .purchase-actions .button { min-height: 50px; font-size: 12px; letter-spacing: .02em; }
+  .product-favorite { width: 50px; }
+  .purchase-assurances { margin-top: 22px; padding-top: 20px; gap: 18px; }
+  .purchase-assurances strong { font-size: 12px; }
+  .purchase-assurances small { font-size: 10px; }
+  .product-story-section { padding: 112px 0; }
+  .product-story-grid { grid-template-columns: 1.12fr .88fr; gap: 100px; }
+  .product-story-grid h2 { font-size: clamp(42px, 3.6vw, 58px); line-height: .99; }
+  .product-story-grid p { max-width: 690px; font-size: 15px; line-height: 1.86; }
+  .benefits-panel { align-self: center; padding: 36px; border-radius: 12px 42px 12px 42px; }
+  .benefits-panel > div { padding: 19px 0; font-size: 14px; }
+  .combo-section { padding-top: 118px; padding-bottom: 118px; }
+  .combo-builder { grid-template-columns: 1.22fr .95fr .72fr; }
+  .combo-products { min-height: 396px; padding: 28px; }
+  .combo-options { padding: 30px; }
+  .combo-summary { padding: 32px; }
+  .combo-summary strong { font-size: 34px; }
+  .reviews-section { padding: 108px 0; }
+  .reviews-empty-state { gap: 96px; }
+  .reviews-empty-state h2 { font-size: clamp(42px, 3.5vw, 56px); }
+  .verified-review-empty { padding: 46px; }
+  .related-section { padding-top: 118px; padding-bottom: 126px; }
+
+  /* Páginas institucionais: menor sensação de vazio e mais conexão entre texto e ação. */
+  .account-hero { padding: 108px 0 112px; }
+  .account-hero-grid { grid-template-columns: .94fr 1.06fr; gap: 104px; }
+  .account-intro h1, .company-hero-copy h1 { font-size: clamp(52px, 4.7vw, 74px); line-height: .94; }
+  .account-intro > p, .company-hero-copy p { font-size: 16px; }
+  .account-access-card { max-width: 560px; justify-self: end; padding: 40px; }
+  .account-features-section { padding-top: 112px; padding-bottom: 108px; }
+  .account-feature-card { min-height: 230px; padding: 28px; }
+  .account-feature-card strong { margin-top: 28px; font-size: 16px; }
+  .account-care-section { padding: 84px 0; }
+  .company-hero { padding: 88px 0 112px; }
+  .company-hero-grid { gap: 92px; }
+  .company-hero-image, .company-hero-image > img { min-height: 630px; height: 630px; }
+  .company-manifesto, .company-audience-section { padding: 112px 0; }
+  .company-manifesto-grid { gap: 108px; }
+  .purpose-section, .company-values-section { padding-top: 118px; padding-bottom: 118px; }
+  .purpose-card { min-height: 350px; padding: 34px; }
+  .company-values-grid article { min-height: 250px; padding: 28px; }
+}

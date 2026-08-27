@@ -82,3 +82,11 @@
 - [x] Validar o limite de requisições e a mensagem de excesso no chat.
 - [x] Validar a abertura, o envio, o carregamento e o tratamento visual de erro do chat.
 - [x] Salvar checkpoint e entregar o atendimento integrado.
+
+## Ajuste fino da versão desktop
+
+- [x] Auditar hierarquia tipográfica, margens, alinhamentos e ritmo vertical das páginas desktop.
+- [x] Refinar fontes, tamanhos, pesos e espaçamentos globais na versão desktop.
+- [x] Reformatar a página de produto para melhor leitura, equilíbrio e decisão de compra.
+- [x] Validar as páginas desktop e preservar a experiência mobile vigente.
+- [x] Salvar checkpoint e entregar a revisão desktop.
