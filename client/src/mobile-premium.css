@@ -18,7 +18,7 @@
 
   .hero-section { min-height: 744px; background: var(--rebka-blush); }
   .hero-content { min-height: 744px; padding-bottom: 18px; align-items: end; }
-  .hero-image { height: 61%; object-position: 64% center; filter: saturate(1.03) contrast(1.01); }
+  .hero-image { height: 61%; object-position: 67% center; filter: saturate(1.03) contrast(1.01); }
   .hero-copy { position: relative; width: 100%; padding: 27px 23px 24px; background: rgba(255,255,255,.96); border: 1px solid rgba(242,167,180,.54); border-radius: 8px 34px 8px 8px; box-shadow: 0 22px 42px rgba(102,67,74,.13); }
   .hero-copy::before { content: ""; position: absolute; top: 0; left: 23px; width: 74px; height: 7px; border-top: 2px solid var(--rebka-rose); border-radius: 50%; transform: rotate(-5deg); }
   .hero-copy h1 { margin-top: 13px; font-size: 43px; line-height: .96; font-weight: 600; letter-spacing: -.065em; }

@@ -46,3 +46,10 @@
 - [x] Refinar hierarquia, imagens e microinterações nas páginas de produto, conta e empresa.
 - [x] Validar as quatro rotas em mobile e preservar o desktop atual.
 - [x] Salvar checkpoint e entregar a versão mobile premium.
+
+## Novo banner principal
+
+- [x] Definir a composição editorial e a área segura de texto do novo hero.
+- [x] Gerar e preparar o banner profissional com produtos reais Rebka.
+- [x] Aplicar o banner nos recortes desktop e mobile.
+- [x] Validar o hero, salvar checkpoint e entregar a versão atualizada.
