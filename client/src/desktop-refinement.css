@@ -61,6 +61,10 @@
   .manifesto-values strong { font-size: 13px; }
   .newsletter-row { padding-top: 86px; padding-bottom: 66px; gap: 88px; }
   .footer-grid { padding: 52px 0; gap: 50px; }
+  .footer-grid { grid-template-columns: minmax(290px, 1.35fr) repeat(3, minmax(150px, 1fr)); align-items: start; }
+  .footer-brand { max-width: 330px; }
+  .footer-bottom { min-height: 76px; }
+  .footer-socials { margin-top: 22px; }
 
   /* Página de produto: sequência de leitura vertical e painel de compra estabilizado. */
   .page-breadcrumb { min-height: 70px; font-size: 12px; }

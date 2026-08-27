@@ -90,3 +90,11 @@
 - [x] Reformatar a página de produto para melhor leitura, equilíbrio e decisão de compra.
 - [x] Validar as páginas desktop e preservar a experiência mobile vigente.
 - [x] Salvar checkpoint e entregar a revisão desktop.
+
+## Revisão final desktop e redes sociais
+
+- [x] Auditar e centralizar os principais blocos da versão para computador.
+- [x] Aplicar ajustes finos de alinhamento, espaçamento e equilíbrio visual.
+- [x] Adicionar os ícones de Instagram, Facebook e TikTok ao rodapé.
+- [x] Validar desktop e preservar o mobile atual.
+- [x] Salvar checkpoint e entregar a versão final revisada.

@@ -282,6 +282,9 @@
   .footer-grid a:hover { color: var(--rebka-rose); }
   .footer-logo { width: 210px; }
   .footer-brand p { margin-top: 18px; color: #82676e; font-size: 12px; line-height: 1.7; }
+  .footer-socials { margin-top: 20px; display: flex; align-items: center; gap: 8px; }
+  .footer-socials button { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--rebka-soft); border-radius: 50%; background: rgba(255,255,255,.65); color: var(--rebka-ink); }
+  .footer-socials button:hover { background: var(--rebka-rose); border-color: var(--rebka-rose); transform: translateY(-2px); }
   .footer-bottom { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 18px; border-top: 1px solid #e7ccd3; color: #9b8187; font-size: 10px; }
   .support-button { position: fixed; z-index: 35; right: 22px; bottom: 22px; width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; background: var(--rebka-rose); color: var(--rebka-ink); box-shadow: 0 15px 35px rgba(242,167,180,.42); }
   .support-button:hover { transform: translateY(-3px); background: var(--rebka-soft); box-shadow: 0 20px 42px rgba(242,167,180,.5); }
