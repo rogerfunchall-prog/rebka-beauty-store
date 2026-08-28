@@ -33,13 +33,13 @@ const routineOptions = [
     id: "equilibrio",
     label: "Equilíbrio diário",
     description: "Quero uma rotina simples e constante.",
-    products: ["BeClean", "BeSoft"],
+    products: ["BeClean", "BeGlow", "BeSoft"],
   },
   {
     id: "sensibilidade",
     label: "Conforto e calma",
     description: "Minha pele pede delicadeza.",
-    products: ["BeClean", "BeCalm"],
+    products: ["BeClean", "BeCalm", "BeSoft"],
   },
   {
     id: "hidratacao",
@@ -201,21 +201,21 @@ export default function Home() {
                 <h2>Cuidados essenciais</h2>
               </div>
               <div className="filter-tabs" aria-label="Filtrar produtos">
-                {["todos", "limpeza", "seruns", "hidratacao", "kits"].map((filter) => (
+                {["todos", "limpeza", "tonicos", "seruns", "hidratacao", "kits"].map((filter) => (
                   <button
                     key={filter}
                     type="button"
                     className={activeCategory === filter ? "active" : ""}
                     onClick={() => setActiveCategory(filter)}
                   >
-                    {filter === "todos" ? "Todos" : filter}
+                    {filter === "todos" ? "Todos" : filter === "tonicos" ? "Tônicos" : filter}
                   </button>
                 ))}
               </div>
             </div>
             <div className="catalog-ritual-note">
               <img src={assets.logo} alt="" />
-              <span><strong>Ritual Rebka</strong> Três gestos essenciais: limpar, acalmar e hidratar.</span>
+              <span><strong>Ritual Rebka</strong> Quatro gestos essenciais: limpar, tonificar, cuidar e hidratar.</span>
               <span className="serum-line" aria-hidden="true" />
             </div>
             <div className="product-grid">

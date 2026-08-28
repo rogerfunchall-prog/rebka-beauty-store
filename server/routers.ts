@@ -55,7 +55,7 @@ export async function generateRebkaAssistantMessage(
             type: "object",
             properties: {
               answer: { type: "string" },
-              recommendation: { type: "string", enum: ["beclean", "becalm", "besoft"] },
+              recommendation: { type: "string", enum: ["beclean", "beglow", "becalm", "besoft"] },
               safety: { type: "boolean" },
             },
             required: ["answer", "recommendation", "safety"],

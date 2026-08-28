@@ -109,6 +109,7 @@
   .product-detail-layout { padding-bottom: 60px; gap: 25px; }
   .product-gallery { display: flex; gap: 12px; padding: 0 var(--mobile-gutter) 8px; margin: 0 calc(var(--mobile-gutter) * -1); overflow-x: auto; scroll-snap-type: x mandatory; }
   .product-gallery-main, .product-gallery-secondary { min-height: 470px; flex: 0 0 85%; border-radius: 30px 7px 30px 7px; scroll-snap-align: start; box-shadow: 0 16px 30px rgba(88,59,66,.1); }
+  .product-gallery-main img, .product-gallery-secondary img { height: 100%; object-fit: cover; object-position: center; }
   .product-purchase-panel { padding: 0; }
   .product-purchase-panel h1 { font-size: 48px; font-weight: 600; }
   .product-short-description { margin-top: 14px; font-size: 13px; line-height: 1.7; }

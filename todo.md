@@ -98,3 +98,19 @@
 - [x] Adicionar os ícones de Instagram, Facebook e TikTok ao rodapé.
 - [x] Validar desktop e preservar o mobile atual.
 - [x] Salvar checkpoint e entregar a versão final revisada.
+
+## Foto de catálogo BeGlow
+
+- [x] Gerar tratamento profissional do tônico facial BeGlow com fundo branco.
+- [x] Ajustar a foto para 1400 × 1400 pixels sem cortar o produto.
+- [x] Verificar fidelidade do rótulo, frasco e acabamento visual.
+- [x] Entregar a imagem final de catálogo.
+
+## Cadastro completo do BeGlow
+
+- [x] Criar imagem profissional de modelo adulto usando o tônico BeGlow em 1400 × 1400 pixels.
+- [x] Preparar a imagem publicitária para uso no catálogo e na página de produto.
+- [x] Cadastrar BeGlow com preço de R$ 49,90, descrições, benefícios e modo de uso.
+- [x] Integrar BeGlow a categorias, relacionados, combos e IA de atendimento.
+- [x] Validar a imagem, o cadastro e as rotas em desktop e mobile.
+- [x] Salvar checkpoint e entregar a atualização.

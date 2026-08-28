@@ -4,6 +4,7 @@ import { fallbackAssistantReply, finalizeAssistantReply, inferRecommendedProduct
 describe("assistente Rebka", () => {
   it("detecta temas que exigem orientação segura", () => {
     expect(isSafetyQuestion("Minha pele ficou vermelha e ardendo")).toBe(true);
+    expect(isSafetyQuestion("Minha pele ardeu depois do BeGlow")).toBe(true);
     expect(isSafetyQuestion("Qual a ordem da rotina?")).toBe(false);
   });
 
@@ -14,7 +15,7 @@ describe("assistente Rebka", () => {
       safety: false,
     });
     expect(response).toContain("**Sugestão Rebka:** **BeSoft**");
-    expect(response).toContain("https://rebkabeauty-beazeepb.manus.space/produto/besoft");
+    expect(response).toContain("https://www.rebka.com.br/produto/besoft");
   });
 
   it("usa o fechamento informativo em situações de segurança", () => {
@@ -34,8 +35,10 @@ describe("assistente Rebka", () => {
     expect(inferRecommendedProduct("Como uso o BeClean?")).toBe("beclean");
     expect(inferRecommendedProduct("Para que serve o BeCalm?")).toBe("becalm");
     expect(inferRecommendedProduct("Como uso o BeSoft?")).toBe("besoft");
+    expect(inferRecommendedProduct("Como uso o BeGlow?")).toBe("beglow");
     expect(fallbackAssistantReply("Como uso o BeSoft?")).toContain("/produto/besoft");
     expect(fallbackAssistantReply("Para que serve o BeCalm?")).toContain("/produto/becalm");
     expect(fallbackAssistantReply("Como uso o BeClean?")).toContain("/produto/beclean");
+    expect(fallbackAssistantReply("Como uso o BeGlow?")).toContain("/produto/beglow");
   });
 });

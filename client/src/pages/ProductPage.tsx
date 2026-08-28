@@ -3,7 +3,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { SiteFooter } from "@/components/SiteFooter";
 import { StoreHeader } from "@/components/StoreHeader";
 import { Button } from "@/components/ui/button";
-import { formatPrice, products, type Product } from "@/data/store";
+import { assets, formatPrice, products, type Product } from "@/data/store";
 import { Check, ChevronRight, CreditCard, Heart, Minus, PackageCheck, Plus, ShieldCheck, ShoppingBag, Sparkles } from "lucide-react";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -24,7 +24,7 @@ export default function ProductPage() {
   const installment = product.price / 6;
 
   const gallery = useMemo(() => {
-    const modelAsset = product.id === "beclean" ? "/manus-storage/rebka_beclean_modelo_1400x1400_0a4b31ec.png" : product.id === "besoft" ? "/manus-storage/rebka_besoft_modelo_loira_1400x1400_f0ea9238.png" : "/manus-storage/rebka_becalm_modelo_1400x1400_0df1a926.png";
+    const modelAsset = product.id === "beclean" ? "/manus-storage/rebka_beclean_modelo_1400x1400_0a4b31ec.png" : product.id === "beglow" ? assets.modelGlow : product.id === "besoft" ? "/manus-storage/rebka_besoft_modelo_loira_1400x1400_f0ea9238.png" : "/manus-storage/rebka_becalm_modelo_1400x1400_0df1a926.png";
     return [product.image, modelAsset];
   }, [product]);
 

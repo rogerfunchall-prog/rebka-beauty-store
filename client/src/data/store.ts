@@ -10,7 +10,7 @@ export type Product = {
   price: number;
   oldPrice?: number;
   image: string;
-  category: "limpeza" | "seruns" | "hidratacao" | "kits";
+  category: "limpeza" | "tonicos" | "seruns" | "hidratacao" | "kits";
   badge?: string;
 };
 
@@ -24,9 +24,11 @@ export const assets = {
   beClean: "/manus-storage/rebka_beclean_catalogo_1400x1400_41a3f048.png",
   beCalm: "/manus-storage/rebka_becalm_catalogo_1400x1400_dda69c85.png",
   beSoft: "/manus-storage/rebka_besoft_catalogo_1400x1400_fa8748e6.png",
+  beGlow: "/manus-storage/rebka_beglow_catalogo_1400x1400_8b2f24b7.png",
   modelClean: "/manus-storage/rebka_beclean_modelo_1400x1400_0a4b31ec.png",
   modelCalm: "/manus-storage/rebka_becalm_modelo_1400x1400_0df1a926.png",
   modelSoft: "/manus-storage/rebka_besoft_modelo_loira_1400x1400_f0ea9238.png",
+  modelGlow: "/manus-storage/rebka_beglow_modelo_1400x1400_cd6f9f64.png",
 };
 
 export const products: Product[] = [
@@ -59,6 +61,20 @@ export const products: Product[] = [
     image: assets.beCalm,
     category: "seruns",
     badge: "Pele sensível",
+  },
+  {
+    id: "beglow",
+    name: "BeGlow",
+    subtitle: "Tônico Facial",
+    shortDescription: "Um gesto leve de tônico facial para complementar a sua rotina depois da limpeza.",
+    longDescription: "BeGlow é o tônico facial da Rebka, criado para entrar na rotina de quem gosta de um cuidado simples e bem pensado. A embalagem com válvula spray torna o momento de aplicação mais prático e transforma a etapa entre limpeza e hidratação em um pequeno ritual de autocuidado.",
+    benefits: ["Tônico facial em spray", "Etapa prática após a limpeza", "Frasco de 120 ml", "Rotina leve e descomplicada"],
+    usage: "Com a pele limpa, aplique em borrifadas leves, evitando o contato com os olhos. Siga sempre as orientações completas do rótulo.",
+    size: "120 ml",
+    price: 49.9,
+    image: assets.beGlow,
+    category: "tonicos",
+    badge: "Novo",
   },
   {
     id: "besoft",
@@ -130,6 +146,12 @@ export const categories = [
     title: "Séruns",
     description: "Cuidado concentrado",
     image: assets.categorySerum,
+  },
+  {
+    id: "tonicos",
+    title: "Tônicos",
+    description: "Um gesto de frescor",
+    image: assets.beGlow,
   },
   {
     id: "hidratacao",
