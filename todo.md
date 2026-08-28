@@ -127,3 +127,23 @@
 - [x] Centralizar contêineres, grids, botões e cartões no desktop sem alterar conteúdo, cores ou layout mobile.
 - [x] Validar desktop e confirmar que as regras mobile permanecem inalteradas.
 - [x] Salvar checkpoint e entregar somente a correção de alinhamento.
+
+## Planejamento da integração Tiny ERP/Olist
+
+- [x] Mapear os fluxos atuais de catálogo, preços, estoque, pedidos, imagens e área administrativa.
+- [x] Validar a documentação vigente da API REST v3 do Tiny ERP/Olist e seus requisitos de autenticação, limites e logística.
+- [x] Definir a arquitetura segura de servidor, sincronização e tratamento de falhas antes de solicitar credenciais.
+- [x] Apresentar o plano para aprovação explícita antes de qualquer implementação ou configuração de segredo.
+
+## Integração completa Tiny ERP/Olist
+
+- [ ] Criar tabelas, contratos e configuração de ambiente para OAuth, cache, auditoria, idempotência e sincronização.
+- [ ] Solicitar e configurar com segurança Client ID, Client Secret, URL de retorno e chave de criptografia após a criação do aplicativo Olist.
+- [ ] Validar a configuração de ambiente e o status do OAuth antes de ativar sincronizações reais.
+- [ ] Implementar cliente seguro da API v3, autorização OAuth, renovação de token e controle de limites de requisição.
+- [ ] Integrar catálogo, imagens, preços e estoque reais à vitrine com estados de carregamento, vazio e erro.
+- [ ] Criar painel administrativo protegido para produtos, imagens, preços, estoque, pedidos e sincronização.
+- [ ] Integrar carrinho, criação idempotente de pedidos, expedição, rastreamento e o ponto de conexão de pagamento.
+- [ ] Implementar receptor de webhooks, reconciliação de dados e testes de segurança/resiliência.
+- [ ] Autorizar a conta Olist, configurar permissões/webhooks e validar as operações reais de ponta a ponta.
+- [ ] Salvar checkpoint e entregar a integração completa validada.

@@ -4,6 +4,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { StoreHeader } from "@/components/StoreHeader";
 import { Button } from "@/components/ui/button";
 import { assets, formatPrice, products, type Product } from "@/data/store";
+import { mapOlistProductToStoreProduct } from "@/data/olistCatalog";
+import { trpc } from "@/lib/trpc";
 import { Check, ChevronRight, CreditCard, Heart, Minus, PackageCheck, Plus, ShieldCheck, ShoppingBag, Sparkles } from "lucide-react";
 import { useMemo, useState } from "react";
 import { toast } from "sonner";
@@ -11,21 +13,26 @@ import { Link, useRoute } from "wouter";
 
 export default function ProductPage() {
   const [, params] = useRoute<{ id: string }>("/produto/:id");
-  const product = products.find((item) => item.id === params?.id) ?? products[0];
-  const related = products.filter((item) => item.id !== product.id).slice(0, 3);
-  const comboOptions = products.filter((item) => item.id !== product.id && item.category !== "kits").slice(0, 3);
+  const olistCatalog = trpc.olist.storefrontProducts.useQuery();
+  const catalogProducts = useMemo(() => {
+    const remoteProducts = olistCatalog.data?.map(mapOlistProductToStoreProduct) ?? [];
+    return remoteProducts.length > 0 ? remoteProducts : products;
+  }, [olistCatalog.data]);
+  const product = catalogProducts.find((item) => item.id === params?.id) ?? catalogProducts[0];
+  const related = catalogProducts.filter((item) => item.id !== product.id).slice(0, 3);
+  const comboOptions = catalogProducts.filter((item) => item.id !== product.id && item.category !== "kits").slice(0, 3);
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [quantity, setQuantity] = useState(1);
   const [comboId, setComboId] = useState(comboOptions[0]?.id ?? "");
 
-  const comboProduct = products.find((item) => item.id === comboId) ?? comboOptions[0];
+  const comboProduct = catalogProducts.find((item) => item.id === comboId) ?? comboOptions[0];
   const comboOriginal = product.price + (comboProduct?.price ?? 0);
   const comboPrice = comboOriginal * 0.8;
   const installment = product.price / 6;
 
   const gallery = useMemo(() => {
     const modelAsset = product.id === "beclean" ? "/manus-storage/rebka_beclean_modelo_1400x1400_0a4b31ec.png" : product.id === "beglow" ? assets.modelGlow : product.id === "besoft" ? "/manus-storage/rebka_besoft_modelo_loira_1400x1400_f0ea9238.png" : "/manus-storage/rebka_becalm_modelo_1400x1400_0df1a926.png";
-    return [product.image, modelAsset];
+    return product.images && product.images.length > 1 ? product.images.slice(0, 2) : [product.image, modelAsset];
   }, [product]);
 
   const addProduct = (item: Product, amount = 1) => {

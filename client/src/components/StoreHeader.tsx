@@ -128,7 +128,7 @@ export function StoreHeader({ cartItems }: StoreHeaderProps) {
                     <div><span>Total</span><strong>{formatPrice(cartTotal)}</strong></div>
                     <Button
                       className="w-full"
-                      onClick={() => toast("Checkout demonstrativo", { description: "O projeto atual não possui back-end ou pagamento." })}
+                      onClick={() => toast("Checkout em preparação", { description: "O pedido será integrado à operação Olist após a configuração do pagamento seguro." })}
                     >
                       Continuar compra
                     </Button>

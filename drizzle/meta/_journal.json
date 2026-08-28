@@ -1,5 +1,20 @@
 {
   "version": "7",
   "dialect": "mysql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1787937079221,
+      "tag": "0000_material_beyonder",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1787938697971,
+      "tag": "0001_yielding_dakota_north",
+      "breakpoints": true
+    }
+  ]
 }

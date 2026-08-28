@@ -8,6 +8,9 @@ import { registerStorageProxy } from "./storageProxy";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { registerOlistOAuthRoutes } from "../olist/oauth";
+import { receiveOlistWebhook } from "../olist/webhooks";
+import { runOlistReconciliation } from "../olist/reconciliation";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -36,6 +39,9 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   registerStorageProxy(app);
   registerOAuthRoutes(app);
+  registerOlistOAuthRoutes(app);
+  app.post("/api/olist/webhooks", receiveOlistWebhook);
+  app.post("/api/scheduled/olist-reconciliation", runOlistReconciliation);
   // tRPC API
   app.use(
     "/api/trpc",

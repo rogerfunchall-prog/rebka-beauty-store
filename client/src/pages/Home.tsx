@@ -4,6 +4,8 @@ import { StoreHeader } from "@/components/StoreHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
 import { assets, categories, products, type Product } from "@/data/store";
+import { mapOlistProductToStoreProduct } from "@/data/olistCatalog";
+import { trpc } from "@/lib/trpc";
 import {
   ArrowRight,
   Check,
@@ -77,6 +79,7 @@ const heroSlides = [
 ];
 
 export default function Home() {
+  const olistCatalog = trpc.olist.storefrontProducts.useQuery();
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [activeCategory, setActiveCategory] = useState("todos");
   const [routine, setRoutine] = useState(routineOptions[0]);
@@ -91,9 +94,14 @@ export default function Home() {
     return () => window.clearInterval(timer);
   }, [heroPaused]);
 
+  const catalogProducts = useMemo(() => {
+    const remoteProducts = olistCatalog.data?.map(mapOlistProductToStoreProduct) ?? [];
+    return remoteProducts.length > 0 ? remoteProducts : products;
+  }, [olistCatalog.data]);
+
   const visibleProducts = useMemo(
-    () => activeCategory === "todos" ? products : products.filter((product) => product.category === activeCategory),
-    [activeCategory],
+    () => activeCategory === "todos" ? catalogProducts : catalogProducts.filter((product) => product.category === activeCategory),
+    [activeCategory, catalogProducts],
   );
 
   const addToCart = (product: Product) => {
@@ -218,6 +226,9 @@ export default function Home() {
               <span><strong>Ritual Rebka</strong> Quatro gestos essenciais: limpar, tonificar, cuidar e hidratar.</span>
               <span className="serum-line" aria-hidden="true" />
             </div>
+            {olistCatalog.isLoading ? <p className="mt-4 text-sm text-muted-foreground">Atualizando a disponibilidade do catálogo...</p> : null}
+            {olistCatalog.isError ? <p className="mt-4 text-sm text-muted-foreground">Não foi possível consultar o catálogo administrativo agora. A vitrine disponível continua visível.</p> : null}
+            {!olistCatalog.isLoading && visibleProducts.length === 0 ? <p className="mt-6 rounded-2xl bg-white/80 p-5 text-sm text-muted-foreground">Nenhum produto está disponível nesta categoria no momento.</p> : null}
             <div className="product-grid">
               {visibleProducts.map((product) => (
                 <ProductCard key={product.id} product={product} onAdd={addToCart} />

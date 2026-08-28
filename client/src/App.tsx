@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import AccountPage from "./pages/AccountPage";
 import CompanyPage from "./pages/CompanyPage";
+import AdminOlistPage from "./pages/AdminOlistPage";
 
 
 function ScrollToTop() {
@@ -29,6 +30,7 @@ function Router() {
         <Route path={"/produto/:id"} component={ProductPage} />
         <Route path={"/conta"} component={AccountPage} />
         <Route path={"/empresa"} component={CompanyPage} />
+        <Route path={"/admin/olist"} component={AdminOlistPage} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />
       </Switch>
