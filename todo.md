@@ -137,9 +137,11 @@
 
 ## Integração completa Tiny ERP/Olist
 
-- [ ] Criar tabelas, contratos e configuração de ambiente para OAuth, cache, auditoria, idempotência e sincronização.
-- [ ] Solicitar e configurar com segurança Client ID, Client Secret, URL de retorno e chave de criptografia após a criação do aplicativo Olist.
+- [x] Criar tabelas, contratos e configuração de ambiente para OAuth, cache, auditoria, idempotência e sincronização.
+- [x] Solicitar e configurar com segurança Client ID, Client Secret, URL de retorno e chave de criptografia após a criação do aplicativo Olist.
 - [ ] Validar a configuração de ambiente e o status do OAuth antes de ativar sincronizações reais.
+- [ ] Concluir o OAuth com a sessão administradora da Rebka e confirmar o redirecionamento de autorização da Olist.
+- [ ] Comprovar a aceitação funcional das credenciais pela Olist sem registrar ou expor segredos.
 - [ ] Implementar cliente seguro da API v3, autorização OAuth, renovação de token e controle de limites de requisição.
 - [ ] Integrar catálogo, imagens, preços e estoque reais à vitrine com estados de carregamento, vazio e erro.
 - [ ] Criar painel administrativo protegido para produtos, imagens, preços, estoque, pedidos e sincronização.
@@ -147,3 +149,10 @@
 - [ ] Implementar receptor de webhooks, reconciliação de dados e testes de segurança/resiliência.
 - [ ] Autorizar a conta Olist, configurar permissões/webhooks e validar as operações reais de ponta a ponta.
 - [ ] Salvar checkpoint e entregar a integração completa validada.
+
+## Atualização de preços e combos
+
+- [x] Atualizar BeCalm para R$ 79,90, BeClean para R$ 39,90, BeSoft para R$ 54,90 e BeGlow para R$ 39,90.
+- [x] Recalcular e reconfigurar os combos de dois produtos com 20% de desconto sobre os novos valores.
+- [x] Validar preços, parcelas e economia nas páginas de produto e na vitrine.
+- [x] Salvar checkpoint e entregar a atualização comercial.
