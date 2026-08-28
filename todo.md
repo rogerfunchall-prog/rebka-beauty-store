@@ -62,6 +62,12 @@
 - [x] Validar tipografia e banners em desktop e mobile.
 - [x] Salvar checkpoint e entregar a atualização.
 
+## Inclusão do BeGlow no banner principal
+
+- [x] Atualizar a composição do banner principal para apresentar BeClean, BeGlow, BeCalm e BeSoft.
+- [x] Preservar a paleta oficial, área segura de texto e leitura do hero em desktop e mobile.
+- [x] Validar a nova composição e salvar a atualização publicada.
+
 ## Base de atendimento da IA
 
 - [x] Consolidar informações confirmadas dos produtos e regras de resposta segura.
