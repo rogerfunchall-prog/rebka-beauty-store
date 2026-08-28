@@ -120,3 +120,10 @@
 - [x] Integrar BeGlow a categorias, relacionados, combos e IA de atendimento.
 - [x] Validar a imagem, o cadastro e as rotas em desktop e mobile.
 - [x] Salvar checkpoint e entregar a atualização.
+
+## Correção de centralização e responsividade desktop
+
+- [x] Auditar home, produto, conta, empresa e demais páginas em múltiplas larguras de desktop.
+- [x] Centralizar contêineres, grids, botões e cartões no desktop sem alterar conteúdo, cores ou layout mobile.
+- [x] Validar desktop e confirmar que as regras mobile permanecem inalteradas.
+- [x] Salvar checkpoint e entregar somente a correção de alinhamento.

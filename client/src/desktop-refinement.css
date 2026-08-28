@@ -1,6 +1,6 @@
 /* Desktop Refinement — Rebka: grade editorial mais precisa, Montserrat com hierarquia e comércio com leitura imediata. */
 @media (min-width: 1024px) {
-  .container { max-width: 1360px; padding-left: 32px; padding-right: 32px; }
+  .container { width: min(calc(100% - 64px), 1360px); max-width: none; margin-left: auto; margin-right: auto; padding-left: 32px; padding-right: 32px; }
   body { font-size: 15px; }
 
   .promo-bar { min-height: 34px; font-size: 9px; letter-spacing: .13em; }
