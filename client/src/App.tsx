@@ -30,6 +30,7 @@ function Router() {
         <Route path={"/produto/:id"} component={ProductPage} />
         <Route path={"/conta"} component={AccountPage} />
         <Route path={"/empresa"} component={CompanyPage} />
+        <Route path={"/admin"} component={AdminOlistPage} />
         <Route path={"/admin/olist"} component={AdminOlistPage} />
         <Route path={"/404"} component={NotFound} />
         <Route component={NotFound} />

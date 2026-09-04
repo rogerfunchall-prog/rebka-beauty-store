@@ -1,4 +1,4 @@
-import { COOKIE_NAME } from "@shared/const";
+import { COOKIE_NAME, ONE_YEAR_MS } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { adminProcedure, protectedProcedure, publicProcedure, router } from "./_core/trpc";
@@ -8,14 +8,29 @@ import { assistantInputSchema, fallbackAssistantReply, rebkaSystemPrompt, isSafe
 import { z } from "zod";
 import * as db from "./db";
 import { olistClient } from "./olist/client";
-import { getOlistConfigStatus, OLIST_ACCOUNT_KEY } from "./olist/config";
+import { getOlistConfigStatus, getOlistWebhookEndpoint, OLIST_ACCOUNT_KEY } from "./olist/config";
 import { synchronizeCatalog, synchronizeProductById } from "./olist/catalog";
 import { createIdempotentOlistOrder } from "./olist/orders";
 import { storagePut } from "./storage";
 import { synchronizeProductImages } from "./olist/catalog";
 import { configureOlistReconciliation } from "./olist/reconciliation";
+import { validateLocalAdminLogin, LOCAL_ADMIN_OPEN_ID } from "./adminAuth";
+import { sdk } from "./_core/sdk";
 
 const requestWindows = new Map<string, { count: number; resetAt: number }>();
+const adminLoginWindows = new Map<string, { count: number; resetAt: number }>();
+
+function enforceAdminLoginRateLimit(forwardedFor: string | undefined) {
+  const ip = forwardedFor?.split(",")[0]?.trim() || "unknown";
+  const now = Date.now();
+  const current = adminLoginWindows.get(ip);
+  if (!current || current.resetAt < now) {
+    adminLoginWindows.set(ip, { count: 1, resetAt: now + 15 * 60 * 1000 });
+    return;
+  }
+  if (current.count >= 5) throw new TRPCError({ code: "TOO_MANY_REQUESTS", message: "Muitas tentativas. Aguarde alguns minutos antes de tentar novamente." });
+  current.count += 1;
+}
 
 function getModelText(content: string | Array<{ type: string; text?: string }> | undefined) {
   if (typeof content === "string") return content;
@@ -94,6 +109,25 @@ export const appRouter = router({
       } as const;
     }),
   }),
+  adminAuth: router({
+    login: publicProcedure.input(z.object({ email: z.string().email().max(320), password: z.string().min(1).max(256) })).mutation(async ({ input, ctx }) => {
+      enforceAdminLoginRateLimit(ctx.req.headers["x-forwarded-for"] as string | undefined);
+      if (!validateLocalAdminLogin(input.email, input.password)) {
+        throw new TRPCError({ code: "UNAUTHORIZED", message: "E-mail ou senha inválidos." });
+      }
+      await db.upsertUser({
+        openId: LOCAL_ADMIN_OPEN_ID,
+        name: "Administração Rebka",
+        email: input.email.trim().toLowerCase(),
+        loginMethod: "admin-local",
+        role: "admin",
+        lastSignedIn: new Date(),
+      });
+      const sessionToken = await sdk.createSessionToken(LOCAL_ADMIN_OPEN_ID, { name: "Administração Rebka", expiresInMs: ONE_YEAR_MS });
+      ctx.res.cookie(COOKIE_NAME, sessionToken, { ...getSessionCookieOptions(ctx.req), maxAge: ONE_YEAR_MS });
+      return { success: true } as const;
+    }),
+  }),
   assistant: router({
     reply: publicProcedure.input(assistantInputSchema).mutation(async ({ input, ctx }) => {
       enforceChatRateLimit(ctx.req.headers["x-forwarded-for"] as string | undefined);
@@ -151,6 +185,7 @@ export const appRouter = router({
           connected: Boolean(connection?.status === "active"),
           tokenExpiresAt: connection?.accessTokenExpiresAt ?? null,
           scope: connection?.scope ?? null,
+          webhookEndpoint: config.webhookConfigured ? getOlistWebhookEndpoint() : null,
         };
       }),
       synchronizeCatalog: adminProcedure.mutation(async () => synchronizeCatalog()),

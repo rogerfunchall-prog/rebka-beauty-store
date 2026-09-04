@@ -40,6 +40,12 @@ export default function AdminOlistPage() {
   const [priceForm, setPriceForm] = useState({ productId: "", price: "", promotionalPrice: "" });
   const [reconciliationCron, setReconciliationCron] = useState("0 0 */6 * * *");
   const [imageProductId, setImageProductId] = useState("");
+  const [adminEmail, setAdminEmail] = useState("");
+  const [adminPassword, setAdminPassword] = useState("");
+  const adminLogin = trpc.adminAuth.login.useMutation({
+    onSuccess: () => window.location.assign("/admin/olist"),
+    onError: error => toast.error("Não foi possível entrar", { description: error.message }),
+  });
   const createProduct = trpc.olist.admin.createProduct.useMutation({
     onSuccess: result => {
       const record = result as Record<string, unknown>;
@@ -146,15 +152,25 @@ export default function AdminOlistPage() {
     reader.readAsDataURL(image);
   };
 
+  const submitAdminLogin = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    adminLogin.mutate({ email: adminEmail, password: adminPassword });
+  };
+
   if (loading) return null;
   if (!isAdmin) {
     return (
       <main className="min-h-screen grid place-items-center bg-[#fdebec] p-6 text-center">
         <section className="max-w-md rounded-[2rem] bg-white p-10 shadow-sm">
           <XCircle className="mx-auto mb-4 text-[#c46d7d]" size={36} />
-          <h1 className="text-2xl font-semibold">Acesso administrativo necessário</h1>
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">Entre com a conta administradora da Rebka para operar a integração da Olist.</p>
-          <Button asChild className="mt-6"><Link href="/">Voltar à loja</Link></Button>
+          <h1 className="text-2xl font-semibold">Painel administrativo</h1>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">Entre para administrar catálogo, estoque, pedidos e a integração da Olist.</p>
+          <form className="mt-6 grid gap-3 text-left" onSubmit={submitAdminLogin}>
+            <label className="grid gap-1.5 text-sm font-medium">E-mail<Input type="email" autoComplete="username" value={adminEmail} onChange={event => setAdminEmail(event.target.value)} placeholder="seuemail@empresa.com" required /></label>
+            <label className="grid gap-1.5 text-sm font-medium">Senha<Input type="password" autoComplete="current-password" value={adminPassword} onChange={event => setAdminPassword(event.target.value)} required /></label>
+            <Button type="submit" disabled={adminLogin.isPending}>{adminLogin.isPending ? "Entrando..." : "Entrar no painel"}</Button>
+          </form>
+          <Button variant="outline" asChild className="mt-3"><Link href="/">Voltar à loja</Link></Button>
         </section>
       </main>
     );
@@ -181,7 +197,10 @@ export default function AdminOlistPage() {
             <CardDescription>{connected ? `Autorizada${integration?.tokenExpiresAt ? ` · token válido até ${formatDate(integration.tokenExpiresAt)}` : ""}` : configured ? "Pronta para ser autorizada por uma conta administradora." : "Aguardando as chaves seguras do aplicativo Olist."}</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-muted-foreground">Webhooks: {integration?.webhookConfigured ? "configurados" : "a configurar após a autorização"}</p>
+            <div className="grid gap-1">
+              <p className="text-sm text-muted-foreground">Webhooks: {integration?.webhookConfigured ? "prontos para configuração na Olist" : "a configurar após a autorização"}</p>
+              {integration?.webhookEndpoint ? <div className="flex flex-col gap-2 sm:flex-row sm:items-center"><Input aria-label="Endpoint de webhook Olist" value={integration.webhookEndpoint} readOnly onFocus={event => event.currentTarget.select()} /><Button type="button" variant="outline" onClick={() => { const endpoint = integration.webhookEndpoint; if (!endpoint) return; void navigator.clipboard.writeText(endpoint).then(() => toast.success("Endpoint copiado")); }}>Copiar endpoint</Button></div> : null}
+            </div>
             {configured && !connected ? <Button onClick={() => window.location.assign("/api/olist/oauth/start")}>Conectar conta Olist</Button> : null}
             {!configured ? <Button variant="outline" onClick={() => toast("Configuração pendente", { description: "Conclua o cadastro do aplicativo na Olist e informe as chaves por meio seguro." })}>Aguardando configuração</Button> : null}
           </CardContent>

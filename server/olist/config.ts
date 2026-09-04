@@ -1,6 +1,7 @@
 export const OLIST_API_BASE_URL = "https://api.tiny.com.br/public-api/v3";
 export const OLIST_OAUTH_BASE_URL = "https://accounts.tiny.com.br/realms/tiny/protocol/openid-connect";
 export const OLIST_ACCOUNT_KEY = "primary";
+const OLIST_WEBHOOK_BASE_URL = "https://www.rebka.com.br/api/olist/webhooks";
 
 type OlistConfig = {
   clientId: string;
@@ -42,4 +43,9 @@ export function getOlistConfigStatus() {
     redirectUri: process.env.TINY_OAUTH_REDIRECT_URI?.trim() || null,
     webhookConfigured: Boolean(process.env.TINY_WEBHOOK_SECRET?.trim()),
   };
+}
+
+export function getOlistWebhookEndpoint() {
+  const secret = required("TINY_WEBHOOK_SECRET");
+  return `${OLIST_WEBHOOK_BASE_URL}?token=${encodeURIComponent(secret)}`;
 }

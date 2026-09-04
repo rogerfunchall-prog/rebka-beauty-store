@@ -145,6 +145,7 @@
 - [ ] Implementar cliente seguro da API v3, autorização OAuth, renovação de token e controle de limites de requisição.
 - [ ] Integrar catálogo, imagens, preços e estoque reais à vitrine com estados de carregamento, vazio e erro.
 - [ ] Criar painel administrativo protegido para produtos, imagens, preços, estoque, pedidos e sincronização.
+- [ ] Disponibilizar acesso de login explícito na Central Olist para a conta proprietária iniciar a autorização.
 - [ ] Integrar carrinho, criação idempotente de pedidos, expedição, rastreamento e o ponto de conexão de pagamento.
 - [ ] Implementar receptor de webhooks, reconciliação de dados e testes de segurança/resiliência.
 - [ ] Autorizar a conta Olist, configurar permissões/webhooks e validar as operações reais de ponta a ponta.
@@ -156,3 +157,13 @@
 - [x] Recalcular e reconfigurar os combos de dois produtos com 20% de desconto sobre os novos valores.
 - [x] Validar preços, parcelas e economia nas páginas de produto e na vitrine.
 - [x] Salvar checkpoint e entregar a atualização comercial.
+
+## Acesso administrativo direto
+
+- [ ] Revogar as chaves do aplicativo Olist que foram expostas e configurar novas credenciais exclusivamente pelo formulário seguro.
+- [x] Adaptar o receptor de webhook para autenticação por chave na URL e fornecer links seguros para os quatro eventos Olist.
+- [x] Criar a rota /admin/ como entrada de login e redirecionamento ao painel Olist.
+- [x] Criar uma sessão administrativa protegida para matheusrangelmail@gmail.com sem gravar senha no código-fonte.
+- [x] Corrigir a tela de acesso administrativo para sempre oferecer uma ação de login utilizável no domínio publicado.
+- [ ] Validar login, proteção da Central Olist e início da autorização OAuth pelo domínio www.rebka.com.br.
+- [x] Salvar checkpoint e entregar o acesso administrativo funcional.
