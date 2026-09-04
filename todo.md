@@ -169,4 +169,6 @@
 - [x] Criar uma sessão administrativa protegida para matheusrangelmail@gmail.com sem gravar senha no código-fonte.
 - [x] Corrigir a tela de acesso administrativo para sempre oferecer uma ação de login utilizável no domínio publicado.
 - [ ] Validar login, proteção da Central Olist e início da autorização OAuth pelo domínio www.rebka.com.br.
+- [x] Corrigir a persistência e validação do estado OAuth para evitar o erro de resposta inválida ou expirada no retorno da Olist.
+- [ ] Validar o retorno OAuth no domínio publicado e confirmar o status de conta Olist autorizada no painel.
 - [x] Salvar checkpoint e entregar o acesso administrativo funcional.

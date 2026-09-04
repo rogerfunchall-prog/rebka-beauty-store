@@ -1,4 +1,4 @@
-import { randomBytes, timingSafeEqual } from "node:crypto";
+import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 import { parse as parseCookieHeader } from "cookie";
 import type { Express, Request, Response } from "express";
 import * as db from "../db";
@@ -9,6 +9,31 @@ import { getSessionCookieOptions } from "../_core/cookies";
 import { sdk } from "../_core/sdk";
 
 const OLIST_OAUTH_STATE_COOKIE = "__Host-olist_oauth_state";
+const OLIST_OAUTH_STATE_TTL_MS = 10 * 60 * 1000;
+
+function olistStateSecret() {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) throw new Error("JWT_SECRET não está configurado para proteger o OAuth Olist.");
+  return secret;
+}
+
+function signOlistState(nonce: string, expiresAt: number) {
+  const payload = `${nonce}.${expiresAt}`;
+  const signature = createHmac("sha256", olistStateSecret()).update(payload).digest("base64url");
+  return `${payload}.${signature}`;
+}
+
+export function createOlistOAuthState(now = Date.now()) {
+  return signOlistState(randomBytes(32).toString("base64url"), now + OLIST_OAUTH_STATE_TTL_MS);
+}
+
+export function isValidOlistOAuthState(state: string | undefined, now = Date.now()) {
+  if (!state) return false;
+  const [nonce, expiresAtString, receivedSignature, ...extra] = state.split(".");
+  const expiresAt = Number(expiresAtString);
+  if (!nonce || !receivedSignature || extra.length > 0 || !Number.isFinite(expiresAt) || expiresAt < now) return false;
+  return constantTimeMatch(receivedSignature, signOlistState(nonce, expiresAt).split(".")[2]);
+}
 
 function queryValue(req: Request, key: string) {
   const value = req.query[key];
@@ -55,11 +80,11 @@ export function registerOlistOAuthRoutes(app: Express) {
     try {
       await requireOlistAdministrator(req);
       const config = getOlistConfig();
-      const state = randomBytes(32).toString("base64url");
+      const state = createOlistOAuthState();
       res.cookie(OLIST_OAUTH_STATE_COOKIE, state, {
         ...getSessionCookieOptions(req),
         httpOnly: true,
-        maxAge: 10 * 60 * 1000,
+        maxAge: OLIST_OAUTH_STATE_TTL_MS,
         path: "/api/olist/oauth/callback",
       });
       const authorizationUrl = new URL(`${OLIST_OAUTH_BASE_URL}/auth`);
@@ -82,8 +107,10 @@ export function registerOlistOAuthRoutes(app: Express) {
     const state = queryValue(req, "state");
     const expectedState = parseCookieHeader(req.headers.cookie ?? "")[OLIST_OAUTH_STATE_COOKIE];
     res.clearCookie(OLIST_OAUTH_STATE_COOKIE, { path: "/api/olist/oauth/callback" });
-    if (!code || !constantTimeMatch(state, expectedState)) {
-      res.status(403).json({ error: "Resposta OAuth Olist inválida ou expirada." });
+    const cookieStateMatches = constantTimeMatch(state, expectedState);
+    const signedStateMatches = isValidOlistOAuthState(state);
+    if (!code || (!cookieStateMatches && !signedStateMatches)) {
+      res.redirect(302, "/admin/olist?connection=expired");
       return;
     }
 
