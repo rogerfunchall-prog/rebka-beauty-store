@@ -174,3 +174,27 @@
 - [ ] Validar a origem efetiva do callback Olist e o formato do state retornado no domínio personalizado.
 - [ ] Validar o retorno OAuth no domínio publicado e confirmar o status de conta Olist autorizada no painel.
 - [x] Salvar checkpoint e entregar o acesso administrativo funcional.
+
+## Validação das páginas do painel admin Olist
+
+- [x] Auditar a página de Catálogo e o formulário de produto com preço, categoria, imagem e estoque.
+- [ ] Confirmar que o cadastro e a atualização refletem os dados diretamente na Olist.
+- [x] Auditar Pedidos, formas de envio, frete, expedição e rastreamento.
+- [x] Validar estados de carregamento, erro, vazio e permissões administrativas nas páginas.
+- [x] Executar testes e validar a compilação do painel administrativo.
+- [ ] Salvar a entrega do painel administrativo validado.
+
+### Lacunas encontradas na auditoria administrativa
+
+- [x] Adicionar consulta e seleção de categorias Olist no formulário de produto, em vez de exigir apenas um ID manual.
+- [x] Adicionar consulta de formas de envio e campos de frete ao fluxo de pedido/expedição.
+- [x] Exibir lista de pedidos com detalhes, status, forma de envio, código de rastreio e atualização de despacho.
+- [ ] Validar o fluxo completo de publicação de produto e atualização de catálogo após os campos administrativos serem concluídos.
+
+### Validações pendentes antes da entrega final
+
+- [ ] Executar um cadastro real de produto pela Central Olist com categoria, preço, estoque e imagem.
+- [x] Adicionar estados explícitos de carregamento, erro e vazio para categorias e formas de envio.
+- [x] Adicionar timeout e mensagem de erro controlada às consultas lentas da Olist.
+- [x] Exibir situação/status e forma de envio na lista de pedidos.
+- [ ] Confirmar a sincronização ponta a ponta na Olist e no cache/vitrine.

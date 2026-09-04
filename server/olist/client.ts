@@ -69,11 +69,18 @@ async function requestRefreshToken(): Promise<OlistTokenResponse> {
     client_secret: config.clientSecret,
     refresh_token: decryptOlistSecret(connection.refreshTokenCiphertext),
   });
-  const response = await fetch(`${OLIST_OAUTH_BASE_URL}/token`, {
-    method: "POST",
-    headers: { "content-type": "application/x-www-form-urlencoded" },
-    body,
-  });
+  let response: Response;
+  try {
+    response = await fetch(`${OLIST_OAUTH_BASE_URL}/token`, {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body,
+      signal: AbortSignal.timeout(15_000),
+    });
+  } catch (error) {
+    const message = error instanceof Error && error.name === "TimeoutError" ? "A renovação da autorização Olist demorou mais de 15 segundos." : "Não foi possível renovar a autorização Olist.";
+    throw new OlistApiError({ status: 504, message });
+  }
   const payload = await parseResponse(response);
   if (!response.ok) throw new OlistApiError({ status: response.status, message: responseMessage(payload, "Não foi possível renovar a autorização Olist.") });
   const token = payload as Partial<OlistTokenResponse>;
@@ -111,15 +118,23 @@ export class OlistClient {
     for (let attempt = 0; attempt <= MAX_RETRIES; attempt += 1) {
       await rateLimiter.waitForAvailability();
       const token = await accessToken(attempt === 1 && lastError?.details.status === 401);
-      const response = await fetch(url, {
-        method,
-        headers: {
-          authorization: `Bearer ${token}`,
-          accept: "application/json",
-          ...(options.body === undefined ? {} : { "content-type": "application/json" }),
-        },
-        body: options.body === undefined ? undefined : JSON.stringify(options.body),
-      });
+      let response: Response;
+      try {
+        response = await fetch(url, {
+          method,
+          headers: {
+            authorization: `Bearer ${token}`,
+            accept: "application/json",
+            ...(options.body === undefined ? {} : { "content-type": "application/json" }),
+          },
+          body: options.body === undefined ? undefined : JSON.stringify(options.body),
+          signal: AbortSignal.timeout(15_000),
+        });
+      } catch (error) {
+        if (attempt < MAX_RETRIES) continue;
+        const message = error instanceof Error && error.name === "TimeoutError" ? "A Olist demorou mais de 15 segundos para responder." : "Não foi possível comunicar com a Olist.";
+        throw new OlistApiError({ status: 504, message });
+      }
       rateLimiter.observe(response.headers);
       const payload = await parseResponse(response);
       if (response.ok) return payload;
@@ -162,6 +177,10 @@ export class OlistClient {
     return this.request(`/produtos/${encodeURIComponent(olistProductId)}/preco`, { method: "PUT", body: payload });
   }
 
+  listCategories(query?: { pagina?: number; limite?: number; pesquisa?: string }) {
+    return this.request("/categorias/todas", { query });
+  }
+
   listProductImages(olistProductId: string) {
     return this.request(`/produtos/${encodeURIComponent(olistProductId)}/anexos`);
   }
@@ -196,6 +215,10 @@ export class OlistClient {
 
   updateOrderDispatch(olistOrderId: string, payload: Record<string, unknown>) {
     return this.request(`/pedidos/${encodeURIComponent(olistOrderId)}/despacho`, { method: "PUT", body: payload });
+  }
+
+  updateInvoiceDispatch(olistInvoiceId: string, payload: Record<string, unknown>) {
+    return this.request(`/notas/${encodeURIComponent(olistInvoiceId)}/despacho`, { method: "PUT", body: payload });
   }
 }
 

@@ -92,6 +92,16 @@ export default function AdminOlistPage() {
     onError: error => toast.error("Não foi possível vincular a imagem", { description: error.message }),
   });
   const orders = trpc.olist.admin.listOrders.useQuery(undefined, { enabled: Boolean(isAdmin && connected) });
+  const categoriesQuery = trpc.olist.admin.listCategories.useQuery({ limite: 100 }, { enabled: Boolean(isAdmin && connected) });
+  const shippingMethodsQuery = trpc.olist.admin.listShippingMethods.useQuery(undefined, { enabled: Boolean(isAdmin && connected) });
+  const [dispatchForm, setDispatchForm] = useState({ invoiceId: "", trackingCode: "", trackingUrl: "", shippingMethodId: "", freightPaid: "", volumes: "1", grossWeight: "" });
+  const updateInvoiceDispatch = trpc.olist.admin.updateInvoiceDispatch.useMutation({
+    onSuccess: () => {
+      toast.success("Expedição atualizada na Olist");
+      setDispatchForm(current => ({ ...current, invoiceId: "", trackingCode: "", trackingUrl: "", freightPaid: "", grossWeight: "" }));
+    },
+    onError: error => toast.error("Não foi possível atualizar a expedição", { description: error.message }),
+  });
 
   const submitProduct = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -160,6 +170,25 @@ export default function AdminOlistPage() {
     reader.readAsDataURL(image);
   };
 
+  const submitDispatch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!dispatchForm.invoiceId || !dispatchForm.shippingMethodId || !dispatchForm.trackingCode) {
+      toast.error("Informe nota fiscal, forma de envio e código de rastreamento.");
+      return;
+    }
+    updateInvoiceDispatch.mutate({
+      olistInvoiceId: dispatchForm.invoiceId,
+      payload: {
+        codigoRastreamento: dispatchForm.trackingCode,
+        urlRastreamento: dispatchForm.trackingUrl || undefined,
+        formaEnvio: { id: Number(dispatchForm.shippingMethodId) },
+        fretePagoEmpresa: dispatchForm.freightPaid ? Number(dispatchForm.freightPaid) : undefined,
+        volumes: dispatchForm.volumes ? Number(dispatchForm.volumes) : undefined,
+        pesoBruto: dispatchForm.grossWeight ? Number(dispatchForm.grossWeight) : undefined,
+      },
+    });
+  };
+
   const submitAdminLogin = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     adminLogin.mutate({ email: adminEmail, password: adminPassword });
@@ -186,6 +215,8 @@ export default function AdminOlistPage() {
 
   const configured = Boolean(integration?.configured);
   const products = catalog.data ?? [];
+  const categories = Array.isArray((categoriesQuery.data as { itens?: unknown[] } | undefined)?.itens) ? (categoriesQuery.data as { itens: unknown[] }).itens : Array.isArray(categoriesQuery.data) ? categoriesQuery.data : [];
+  const shippingMethods = Array.isArray((shippingMethodsQuery.data as { itens?: unknown[] } | undefined)?.itens) ? (shippingMethodsQuery.data as { itens: unknown[] }).itens : Array.isArray(shippingMethodsQuery.data) ? shippingMethodsQuery.data : [];
 
   return (
     <DashboardLayout menuItems={navigation}>
@@ -235,7 +266,7 @@ export default function AdminOlistPage() {
             <CardContent>
               <form className="grid gap-4 sm:grid-cols-2" onSubmit={submitProduct}>
                 <label className="grid gap-2"><Label htmlFor="olist-sku">SKU</Label><Input id="olist-sku" value={productForm.sku} onChange={event => setProductForm(current => ({ ...current, sku: event.target.value }))} placeholder="REBKA-EXEMPLO-001" required /></label>
-                <label className="grid gap-2"><Label htmlFor="olist-category">ID da categoria Olist</Label><Input id="olist-category" inputMode="numeric" value={productForm.categoryId} onChange={event => setProductForm(current => ({ ...current, categoryId: event.target.value }))} placeholder="Opcional" /></label>
+                <label className="grid gap-2"><Label htmlFor="olist-category">Categoria Olist</Label><select id="olist-category" className="h-10 rounded-md border border-input bg-transparent px-3 text-sm" value={productForm.categoryId} disabled={categoriesQuery.isLoading || categoriesQuery.isError || categories.length === 0} onChange={event => setProductForm(current => ({ ...current, categoryId: event.target.value }))}><option value="">{categoriesQuery.isLoading ? "Carregando categorias..." : categoriesQuery.isError ? "Falha ao carregar categorias" : categories.length === 0 ? "Nenhuma categoria disponível" : "Selecione uma categoria"}</option>{categories.map((category, index) => { const item = category as Record<string, unknown>; const id = item.id ?? item.idCategoria; const label = item.descricao ?? item.nome ?? `Categoria ${index + 1}`; return id === undefined ? null : <option key={String(id)} value={String(id)}>{String(label)}</option>; })}</select>{categoriesQuery.isError ? <span className="text-xs text-destructive">Não foi possível carregar as categorias da Olist.</span> : null}</label>
                 <label className="grid gap-2 sm:col-span-2"><Label htmlFor="olist-description">Nome do produto</Label><Input id="olist-description" value={productForm.description} onChange={event => setProductForm(current => ({ ...current, description: event.target.value }))} placeholder="Nome exibido no cadastro Olist" required /></label>
                 <label className="grid gap-2 sm:col-span-2"><Label htmlFor="olist-detail">Descrição complementar</Label><textarea id="olist-detail" className="min-h-24 rounded-md border border-input bg-transparent px-3 py-2 text-sm" value={productForm.longDescription} onChange={event => setProductForm(current => ({ ...current, longDescription: event.target.value }))} placeholder="Informações completas do produto" /></label>
                 <label className="grid gap-2"><Label htmlFor="olist-price">Preço de venda</Label><Input id="olist-price" type="number" min="0" step="0.01" value={productForm.price} onChange={event => setProductForm(current => ({ ...current, price: event.target.value }))} placeholder="0,00" required /></label>
@@ -275,7 +306,7 @@ export default function AdminOlistPage() {
 
         <section className="grid gap-6 xl:grid-cols-2">
           <Card className="shadow-none"><CardHeader><CardTitle>Imagem de produto</CardTitle><CardDescription>A imagem é armazenada com segurança na Rebka e vinculada à Olist como anexo externo.</CardDescription></CardHeader><CardContent className="grid gap-3"><Label htmlFor="olist-image-product">ID do produto Olist</Label><Input id="olist-image-product" value={imageProductId} onChange={event => setImageProductId(event.target.value)} placeholder="ID retornado pela Olist" /><Input type="file" accept="image/jpeg,image/png,image/webp" disabled={!connected || !imageProductId || attachImage.isPending} onChange={selectImage} /><p className="text-xs text-muted-foreground">Formatos aceitos: JPG, PNG ou WebP, com até 10 MB.</p></CardContent></Card>
-          <Card id="pedidos" className="shadow-none"><CardHeader><CardTitle>Pedidos e expedição</CardTitle><CardDescription>Pedidos reais da Olist aparecem após a conexão. A integração também recebe atualização de venda, envio e rastreio por webhook.</CardDescription></CardHeader><CardContent><p className="text-sm text-muted-foreground">{connected ? orders.isLoading ? "Consultando pedidos..." : `Consulta administrativa disponível${orders.data ? "." : ", sem retorno registrado."}` : "Autorize a conta Olist para consultar pedidos e opções de expedição."}</p></CardContent></Card>
+          <Card id="pedidos" className="shadow-none"><CardHeader><CardTitle>Pedidos e expedição</CardTitle><CardDescription>Pedidos, forma de envio, frete pago e rastreamento são enviados à Olist pela nota fiscal.</CardDescription></CardHeader><CardContent className="grid gap-5"><div className="rounded-xl bg-muted/40 p-4"><p className="mb-3 text-sm font-medium">Pedidos recentes</p>{!connected ? <p className="text-sm text-muted-foreground">Autorize a conta Olist para consultar pedidos.</p> : orders.isLoading ? <p className="text-sm text-muted-foreground">Consultando pedidos...</p> : (() => { const data = orders.data as { itens?: unknown[] } | unknown[] | null | undefined; const items = Array.isArray(data) ? data : data && Array.isArray(data.itens) ? data.itens : []; return items.length === 0 ? <p className="text-sm text-muted-foreground">Nenhum pedido retornado pela Olist.</p> : <div className="grid gap-2">{items.slice(0, 8).map((order, index) => { const item = order as Record<string, unknown>; const client = item.cliente as Record<string, unknown> | undefined; const transport = item.transportador as Record<string, unknown> | undefined; const shipping = transport?.formaEnvio as Record<string, unknown> | undefined; const statusLabel = ({ 0: "Aberto", 1: "Faturado", 2: "Cancelado", 3: "Aprovado", 4: "Preparando envio", 5: "Enviado", 6: "Entregue", 7: "Pronto para envio", 8: "Dados incompletos", 9: "Não entregue" } as Record<number, string>)[Number(item.situacao)] ?? "Status não informado"; return <div key={String(item.id ?? index)} className="flex flex-col gap-1 rounded-lg border border-border/60 bg-background px-3 py-2 text-sm sm:flex-row sm:items-center sm:justify-between"><span>Pedido #{String(item.numeroPedido ?? item.id ?? "—")} · {String(client?.nome ?? "Cliente não informado")} · {statusLabel}</span><span className="text-xs text-muted-foreground">{String(transport?.nome ?? "Sem transportador")} · {String(shipping?.nome ?? shipping?.descricao ?? "Sem forma de envio")} · {String(transport?.codigoRastreamento ?? "Sem rastreio")}</span></div>; })}</div>; })()}</div><form className="grid gap-4 sm:grid-cols-2" onSubmit={submitDispatch}><label className="grid gap-2"><Label htmlFor="olist-invoice-id">ID da nota fiscal</Label><Input id="olist-invoice-id" value={dispatchForm.invoiceId} onChange={event => setDispatchForm(current => ({ ...current, invoiceId: event.target.value }))} required /></label><label className="grid gap-2"><Label htmlFor="olist-shipping-method">Forma de envio</Label><select id="olist-shipping-method" className="h-10 rounded-md border border-input bg-transparent px-3 text-sm" value={dispatchForm.shippingMethodId} disabled={shippingMethodsQuery.isLoading || shippingMethodsQuery.isError || shippingMethods.length === 0} onChange={event => setDispatchForm(current => ({ ...current, shippingMethodId: event.target.value }))} required><option value="">{shippingMethodsQuery.isLoading ? "Carregando formas de envio..." : shippingMethodsQuery.isError ? "Falha ao carregar formas de envio" : shippingMethods.length === 0 ? "Nenhuma forma disponível" : "Selecione uma forma"}</option>{shippingMethods.map((method, index) => { const item = method as Record<string, unknown>; const id = item.id ?? item.idFormaEnvio; const label = item.descricao ?? item.nome ?? `Forma ${index + 1}`; return id === undefined ? null : <option key={String(id)} value={String(id)}>{String(label)}</option>; })}</select>{shippingMethodsQuery.isError ? <span className="text-xs text-destructive">Não foi possível carregar as formas de envio da Olist.</span> : null}</label><label className="grid gap-2"><Label htmlFor="olist-tracking-code">Código de rastreamento</Label><Input id="olist-tracking-code" value={dispatchForm.trackingCode} onChange={event => setDispatchForm(current => ({ ...current, trackingCode: event.target.value }))} required /></label><label className="grid gap-2"><Label htmlFor="olist-tracking-url">URL de rastreamento</Label><Input id="olist-tracking-url" type="url" value={dispatchForm.trackingUrl} onChange={event => setDispatchForm(current => ({ ...current, trackingUrl: event.target.value }))} placeholder="Opcional" /></label><label className="grid gap-2"><Label htmlFor="olist-freight-paid">Frete pago pela empresa</Label><Input id="olist-freight-paid" type="number" min="0" step="0.01" value={dispatchForm.freightPaid} onChange={event => setDispatchForm(current => ({ ...current, freightPaid: event.target.value }))} placeholder="Opcional" /></label><label className="grid gap-2"><Label htmlFor="olist-volumes">Volumes</Label><Input id="olist-volumes" type="number" min="1" step="1" value={dispatchForm.volumes} onChange={event => setDispatchForm(current => ({ ...current, volumes: event.target.value }))} /></label><label className="grid gap-2"><Label htmlFor="olist-gross-weight">Peso bruto (kg)</Label><Input id="olist-gross-weight" type="number" min="0" step="0.001" value={dispatchForm.grossWeight} onChange={event => setDispatchForm(current => ({ ...current, grossWeight: event.target.value }))} placeholder="Opcional" /></label><div className="sm:col-span-2"><Button type="submit" disabled={!connected || updateInvoiceDispatch.isPending}>{updateInvoiceDispatch.isPending ? "Atualizando..." : "Atualizar expedição na Olist"}</Button></div></form></CardContent></Card>
         </section>
 
         <Card id="catalogo" className="shadow-none">

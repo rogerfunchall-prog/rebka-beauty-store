@@ -195,6 +195,8 @@ export const appRouter = router({
       synchronizeProduct: adminProcedure.input(z.object({ olistProductId: z.string().min(1).max(64) })).mutation(({ input }) => synchronizeProductById(input.olistProductId)),
       listProducts: adminProcedure.input(z.object({ pagina: z.number().int().positive().optional(), limite: z.number().int().min(1).max(100).optional(), pesquisa: z.string().max(255).optional() }).optional()).query(({ input }) => olistClient.listProducts(input)),
       getProduct: adminProcedure.input(z.object({ olistProductId: z.string().min(1).max(64) })).query(({ input }) => olistClient.getProduct(input.olistProductId)),
+      listCategories: adminProcedure.input(z.object({ pagina: z.number().int().positive().optional(), limite: z.number().int().min(1).max(100).optional(), pesquisa: z.string().max(255).optional() }).optional()).query(({ input }) => olistClient.listCategories(input)),
+      listShippingMethods: adminProcedure.query(() => olistClient.listShippingMethods()),
       createProduct: adminProcedure.input(z.object({ payload: z.record(z.string(), z.unknown()) })).mutation(async ({ input }) => {
         const remote = await olistClient.createProduct(input.payload);
         const remoteId = (remote as Record<string, unknown>).id ?? (remote as Record<string, unknown>).idProduto;
@@ -238,6 +240,7 @@ export const appRouter = router({
       synchronizeProductImages: adminProcedure.input(z.object({ olistProductId: z.string().min(1).max(64) })).mutation(({ input }) => synchronizeProductImages(input.olistProductId)),
       listOrders: adminProcedure.input(z.object({ pagina: z.number().int().positive().optional(), limite: z.number().int().min(1).max(100).optional(), numero: z.number().int().positive().optional() }).optional()).query(({ input }) => olistClient.listOrders(input)),
       updateDispatch: adminProcedure.input(z.object({ olistOrderId: z.string().min(1).max(64), payload: z.record(z.string(), z.unknown()) })).mutation(({ input }) => olistClient.updateOrderDispatch(input.olistOrderId, input.payload)),
+      updateInvoiceDispatch: adminProcedure.input(z.object({ olistInvoiceId: z.string().min(1).max(64), payload: z.record(z.string(), z.unknown()) })).mutation(({ input }) => olistClient.updateInvoiceDispatch(input.olistInvoiceId, input.payload)),
       configureReconciliation: adminProcedure.input(z.object({ cron: z.string().regex(/^\S+\s+\S+\s+\S+\s+\S+\s+\S+\s+\S+$/, "Use seis campos cron, em UTC.") })).mutation(({ input, ctx }) => configureOlistReconciliation(input.cron, ctx.req.headers.cookie)),
     }),
   }),
