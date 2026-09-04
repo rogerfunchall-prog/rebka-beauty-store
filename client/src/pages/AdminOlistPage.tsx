@@ -6,8 +6,8 @@ import { Label } from "@/components/ui/label";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Boxes, ExternalLink, PackageSearch, RefreshCw, ShoppingBag, Truck, Wifi, XCircle } from "lucide-react";
-import { Link } from "wouter";
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { Link, useSearch } from "wouter";
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { toast } from "sonner";
 
 const navigation: DashboardNavItem[] = [
@@ -23,6 +23,7 @@ function formatDate(value: Date | string | null | undefined) {
 
 export default function AdminOlistPage() {
   const { user, loading } = useAuth();
+  const connectionResult = new URLSearchParams(useSearch()).get("connection");
   const isAdmin = user?.role === "admin";
   const status = trpc.olist.admin.status.useQuery(undefined, { enabled: Boolean(isAdmin), refetchInterval: isAdmin ? 10_000 : false });
   const integration = status.data;
@@ -48,6 +49,11 @@ export default function AdminOlistPage() {
     onSuccess: () => window.location.assign("/admin/olist"),
     onError: error => toast.error("Não foi possível entrar", { description: error.message }),
   });
+  useEffect(() => {
+    if (connectionResult === "expired") toast.error("A autorização Olist expirou", { description: "Clique em Conectar conta Olist para iniciar uma nova autorização." });
+    if (connectionResult === "failed") toast.error("A Olist não concluiu a conexão", { description: "Revise as chaves do aplicativo e tente novamente." });
+    if (connectionResult === "success") toast.success("Conta Olist autorizada com sucesso");
+  }, [connectionResult]);
   const createProduct = trpc.olist.admin.createProduct.useMutation({
     onSuccess: result => {
       const record = result as Record<string, unknown>;
@@ -192,6 +198,9 @@ export default function AdminOlistPage() {
           </div>
           <Button variant="outline" asChild><Link href="/"><ExternalLink size={16} /> Ver loja</Link></Button>
         </header>
+
+        {connectionResult === "expired" ? <div role="alert" className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">A autorização anterior expirou ou foi iniciada antes da atualização. Clique em <strong>Conectar conta Olist</strong> novamente para gerar uma autorização válida.</div> : null}
+        {connectionResult === "failed" ? <div role="alert" className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-900">A Olist não concluiu a autorização. Revise as novas chaves pelo formulário seguro e tente novamente.</div> : null}
 
         <Card className={webhookConfirmed ? "border-emerald-200 bg-emerald-50/40 shadow-none" : "border-[#f2a7b4]/50 bg-[#fffafb] shadow-none"}>
           <CardHeader className="pb-3">
