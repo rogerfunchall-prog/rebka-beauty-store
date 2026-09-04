@@ -180,12 +180,15 @@ export const appRouter = router({
       status: adminProcedure.query(async () => {
         const config = getOlistConfigStatus();
         const connection = await db.getOlistConnection(OLIST_ACCOUNT_KEY);
+        const latestWebhook = await db.getLatestOlistWebhook();
         return {
           ...config,
           connected: Boolean(connection?.status === "active"),
           tokenExpiresAt: connection?.accessTokenExpiresAt ?? null,
           scope: connection?.scope ?? null,
           webhookEndpoint: config.webhookConfigured ? getOlistWebhookEndpoint() : null,
+          lastWebhookReceivedAt: latestWebhook?.receivedAt ?? null,
+          lastWebhookEventType: latestWebhook?.eventType ?? null,
         };
       }),
       synchronizeCatalog: adminProcedure.mutation(async () => synchronizeCatalog()),

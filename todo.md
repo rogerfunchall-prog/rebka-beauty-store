@@ -162,6 +162,9 @@
 
 - [ ] Revogar as chaves do aplicativo Olist que foram expostas e configurar novas credenciais exclusivamente pelo formulário seguro.
 - [x] Adaptar o receptor de webhook para autenticação por chave na URL e fornecer links seguros para os quatro eventos Olist.
+- [ ] Substituir a chave de webhook exposta e atualizar o endpoint configurado nos quatro eventos da Olist.
+- [x] Exibir status verde de webhook confirmado após o primeiro recebimento real da Olist, com atualização automática no painel.
+- [x] Validar por teste o status administrativo que ativa a confirmação verde a partir de um webhook persistido.
 - [x] Criar a rota /admin/ como entrada de login e redirecionamento ao painel Olist.
 - [x] Criar uma sessão administrativa protegida para matheusrangelmail@gmail.com sem gravar senha no código-fonte.
 - [x] Corrigir a tela de acesso administrativo para sempre oferecer uma ação de login utilizável no domínio publicado.

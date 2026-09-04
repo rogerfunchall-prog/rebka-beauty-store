@@ -298,3 +298,9 @@ export async function recordOlistWebhook(input: { payloadHash: string; eventType
     throw error;
   }
 }
+
+export async function getLatestOlistWebhook() {
+  const db = await getDb();
+  if (!db) return undefined;
+  return (await db.select().from(olistWebhookEvents).orderBy(desc(olistWebhookEvents.receivedAt)).limit(1))[0];
+}

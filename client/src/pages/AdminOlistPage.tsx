@@ -24,9 +24,11 @@ function formatDate(value: Date | string | null | undefined) {
 export default function AdminOlistPage() {
   const { user, loading } = useAuth();
   const isAdmin = user?.role === "admin";
-  const status = trpc.olist.admin.status.useQuery(undefined, { enabled: Boolean(isAdmin) });
+  const status = trpc.olist.admin.status.useQuery(undefined, { enabled: Boolean(isAdmin), refetchInterval: isAdmin ? 10_000 : false });
   const integration = status.data;
   const connected = Boolean(integration?.connected);
+  const webhookConfirmed = Boolean(integration?.lastWebhookReceivedAt);
+  const webhookEventLabel = integration?.lastWebhookEventType && integration.lastWebhookEventType !== "unknown" ? integration.lastWebhookEventType : "Notificação recebida";
   const catalog = trpc.olist.storefrontProducts.useQuery(undefined, { enabled: Boolean(isAdmin && status.data?.connected) });
   const synchronizeCatalog = trpc.olist.admin.synchronizeCatalog.useMutation({
     onSuccess: async result => {
@@ -191,10 +193,10 @@ export default function AdminOlistPage() {
           <Button variant="outline" asChild><Link href="/"><ExternalLink size={16} /> Ver loja</Link></Button>
         </header>
 
-        <Card className="border-[#f2a7b4]/50 bg-[#fffafb] shadow-none">
+        <Card className={webhookConfirmed ? "border-emerald-200 bg-emerald-50/40 shadow-none" : "border-[#f2a7b4]/50 bg-[#fffafb] shadow-none"}>
           <CardHeader className="pb-3">
-            <CardTitle className="flex items-center gap-2 text-lg"><Wifi className={connected ? "text-emerald-600" : "text-[#c46d7d]"} size={19} /> Conexão com a Olist</CardTitle>
-            <CardDescription>{connected ? `Autorizada${integration?.tokenExpiresAt ? ` · token válido até ${formatDate(integration.tokenExpiresAt)}` : ""}` : configured ? "Pronta para ser autorizada por uma conta administradora." : "Aguardando as chaves seguras do aplicativo Olist."}</CardDescription>
+            <CardTitle className="flex items-center gap-2 text-lg"><Wifi className={webhookConfirmed || connected ? "text-emerald-600" : "text-[#c46d7d]"} size={19} /> Conexão com a Olist</CardTitle>
+            <CardDescription>{webhookConfirmed ? `Webhook confirmado em ${formatDate(integration?.lastWebhookReceivedAt)} · ${webhookEventLabel}.` : connected ? `Autorizada${integration?.tokenExpiresAt ? ` · token válido até ${formatDate(integration.tokenExpiresAt)}` : ""}` : configured ? "Endpoint pronto. O indicador ficará verde após a primeira notificação real da Olist." : "Aguardando as chaves seguras do aplicativo Olist."}</CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="grid gap-1">
